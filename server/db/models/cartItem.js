@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('./database')
+const db = require('../db')
 
 const CartItem = db.define('cartItem', {
   status: {
@@ -8,9 +8,7 @@ const CartItem = db.define('cartItem', {
     defaultValue: 'active',
     validate: {
       notEmpty: true,
-      validate: {
-        isIn: [['completed', 'active']]
-      }
+      isIn: [['completed', 'active']]
     }
   },
   quantity: {
@@ -19,9 +17,7 @@ const CartItem = db.define('cartItem', {
     defaultValue: 1,
     validate: {
       notEmpty: true,
-      validate: {
-        isInt: true
-      }
+      isInt: true
     }
   }
 })

@@ -20,11 +20,11 @@ const CartItem = require('./cartItem')
 const Product = require('./product')
 const User = require('./user')
 
-User.belongsToMany(CartItem)
-CartItem.belongsToMany(User)
+User.belongsToMany(CartItem, {through: 'Carts'})
+CartItem.belongsToMany(User, {through: 'Carts'})
 
 CartItem.hasOne(Product)
-Product.belongsToMany(CartItem)
+Product.belongsTo(CartItem)
 
 module.exports = {
   db,
