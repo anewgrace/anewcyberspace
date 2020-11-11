@@ -15,25 +15,20 @@
  */
 
 const db = require('../db')
-const Cart = require('./cart')
+
 const CartItem = require('./cartItem')
 const Product = require('./product')
-const UserCG = require('./userCG')
+const User = require('./user')
 
-UserCG.hasOne(Cart)
-Cart.belongsTo(UserCG)
-
-Cart.hasMany(CartItem)
-CartItem.belongsTo(Cart)
+User.belongsToMany(CartItem)
+CartItem.belongsToMany(User)
 
 CartItem.hasOne(Product)
-
 Product.belongsToMany(CartItem)
 
 module.exports = {
   db,
-  Cart,
   CartItem,
   Product,
-  UserCG
+  User
 }
