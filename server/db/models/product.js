@@ -19,16 +19,18 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4NEG6o7-rSz8unTl2R1RYTUIuYbHTvYtGqQ&usqp=CAU',
     validate: {
       notEmpty: true
     }
   },
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      isDecimal: true,
-      notEmpty: true
+      notEmpty: true,
+      isInt: true
     }
   },
   inventory: {
