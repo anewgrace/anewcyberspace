@@ -24,7 +24,7 @@ export const getUsersFromDB = () => {
 }
 
 //Reducer
-const usersReducer = (state = [], action) => {
+const allUsersReducer = (state = [], action) => {
   switch (action.type) {
     case SET_USERS:
       return action.users
@@ -32,4 +32,4 @@ const usersReducer = (state = [], action) => {
       return state
   }
 }
-export default usersReducer
+export default allUsersReducer
