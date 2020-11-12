@@ -1,0 +1,13 @@
+#singleProductContainer {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-color: black;
+}
+
+#singleProductItem {
+  color: white;
+  font-size: 5rem;
+  width: 100%;
+  top: 10%;
+}
