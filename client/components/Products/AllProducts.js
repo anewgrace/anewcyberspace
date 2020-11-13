@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getProductsFromDb} from '../../store/allProducts'
+import ProductTile from './ProductTile'
 
 export class AllProducts extends React.Component {
   constructor() {
@@ -24,30 +25,9 @@ export class AllProducts extends React.Component {
           <div id="loading" />
         ) : (
           <div className="container">
-            <div className="products-tile">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4NEG6o7-rSz8unTl2R1RYTUIuYbHTvYtGqQ&usqp=CAU" />
-              <h3 className="product-name">Jet Pack</h3>
-              <p className="product-description">A backpack that flies</p>
-              <h3 className="product-price">$233.99</h3>
-            </div>
-            <div className="products-tile">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4NEG6o7-rSz8unTl2R1RYTUIuYbHTvYtGqQ&usqp=CAU" />
-              <h3 className="product-name">Jet Pack</h3>
-              <p className="product-description">A backpack that flies</p>
-              <h3 className="product-price">$233.99</h3>
-            </div>
-            <div className="products-tile">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4NEG6o7-rSz8unTl2R1RYTUIuYbHTvYtGqQ&usqp=CAU" />
-              <h3 className="product-name">Jet Pack</h3>
-              <p className="product-description">A backpack that flies</p>
-              <h3 className="product-price">$233.99</h3>
-            </div>
-            <div className="products-tile">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS4NEG6o7-rSz8unTl2R1RYTUIuYbHTvYtGqQ&usqp=CAU" />
-              <h3 className="product-name">Jet Pack</h3>
-              <p className="product-description">A backpack that flies</p>
-              <h3 className="product-price">$233.99</h3>
-            </div>
+            {this.props.allProducts.map(product => {
+              return <ProductTile key={product.id} {...product} />
+            })}
           </div>
         )}
       </div>

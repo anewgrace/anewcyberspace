@@ -1,26 +1,41 @@
 .allProducts .container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
-.allProducts .products-tile {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 0.5em;
+.allProducts .product-tile {
+  border-radius: 25px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.05);
   width: 23%;
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
   text-align: center;
+  z-index: 4;
+  color: white;
+}
+.allProducts .product-tile:hover {
+  background-color: white;
+  color: #39a3c0;
+  padding: 0.5rem;
 }
 
 .allProducts img {
   max-width: 100%;
-  border-radius: 5px;
+  border-radius: 25px 25px 0px 0px;
 }
 
 .allProducts .product-name,
 .allProducts .product-description {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+}
+
+.allProducts .product-name {
+  font-family: NeuroPolitical;
 }
 
 .allProducts .product-price {
