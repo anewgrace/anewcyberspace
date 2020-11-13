@@ -31,7 +31,7 @@ class Routes extends Component {
           path="/login"
           render={props => (
             <div>
-              {/*<Background />*/}
+              <Background />
               <Login />
             </div>
           )}
@@ -40,7 +40,7 @@ class Routes extends Component {
           path="/signup"
           render={props => (
             <div>
-              {/*<Background />*/}
+              <Background />
               <Signup />
             </div>
           )}

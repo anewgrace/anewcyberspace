@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default function ProductTile(props) {
-  const {imageUrl, name, price, description} = props
+export default function ProductTile({imageUrl, name, price, description}) {
   return (
     <div className="product-tile">
       <img src={imageUrl} />

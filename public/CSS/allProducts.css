@@ -1,43 +1,68 @@
+#productTileLink {
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0);
+  width: 23%;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  z-index: 4;
+}
+
+#productTileLink:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.allProducts {
+  height: 75%;
+  width: 100%;
+}
+.allProducts .container::-webkit-scrollbar {
+  display: none;
+}
 .allProducts .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   margin-left: 6rem;
   margin-right: 6rem;
+  position: absolute;
+  top: 6rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  height: 85%;
 }
-
 .allProducts .product-tile {
   border-radius: 25px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.05);
-  width: 23%;
-  margin-bottom: 2rem;
   text-align: center;
   z-index: 4;
   color: white;
+  height: 100%;
 }
+
 .allProducts .product-tile:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   color: #39a3c0;
-  padding: 0.5rem;
 }
 
 .allProducts img {
   max-width: 100%;
   border-radius: 25px 25px 0px 0px;
 }
-
 .allProducts .product-name,
 .allProducts .product-description {
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
 }
-
 .allProducts .product-name {
   font-family: NeuroPolitical;
 }
-
 .allProducts .product-price {
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
