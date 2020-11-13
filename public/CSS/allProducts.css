@@ -1,0 +1,29 @@
+.allProducts .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.allProducts .products-tile {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 0.5em;
+  width: 23%;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.allProducts img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.allProducts .product-name,
+.allProducts .product-description {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.allProducts .product-price {
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
