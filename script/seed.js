@@ -26,14 +26,79 @@ async function seed() {
     Product.create({
       name: 'Jet Pack',
       description: 'something new and cool',
-      price: 123,
-      inventory: 35
+      price: 123399,
+      inventory: 35,
+      imageUrl: '/public/images/products/jet-pack.png'
     }),
     Product.create({
-      name: 'Jet Pack2',
-      description: 'something new and cool2',
+      name: 'Light Saber',
+      description: "a jedi's best friend",
+      price: 43213299,
+      inventory: 20,
+      imageUrl: '/public/images/products/light-saber.jpeg'
+    }),
+    Product.create({
+      name: 'Laser Gun',
+      description: 'a gun that shoots lasers',
       price: 133,
-      inventory: 1003
+      inventory: 100,
+      imageUrl: '/public/images/products/laser-gun.png'
+    }),
+    Product.create({
+      name: 'Laser Blaster',
+      description: 'a blaster that shoots lasers',
+      price: 27399,
+      inventory: 100,
+      imageUrl: '/public/images/products/laser-blaster.png'
+    }),
+    Product.create({
+      name: 'X-Wing Battle Fighter',
+      description: "a space ship that looks like an 'x'",
+      price: 408822999,
+      inventory: 5,
+      imageUrl: '/public/images/products/x-wing.jpg'
+    }),
+    Product.create({
+      name: 'Millenium Falcon',
+      description: 'fastest ship around',
+      price: 999999999,
+      inventory: 1,
+      imageUrl: '/public/images/products/millenium-falcon.jpg'
+    }),
+    Product.create({
+      name: 'Hooverboard',
+      description: 'a skateboard that hoovers',
+      price: 1689599,
+      inventory: 1000,
+      imageUrl: '/public/images/products/hover-board.png'
+    }),
+    Product.create({
+      name: 'Iron Man Suit',
+      description: 'flying wearable robot suit',
+      price: 258898999,
+      inventory: 15,
+      imageUrl: '/public/images/products/ironman.png'
+    }),
+    Product.create({
+      name: 'Badassium',
+      description: 'rare element developed by Tony Stark',
+      price: 707288799,
+      inventory: 5,
+      imageUrl: '/public/images/products/badassium.png'
+    }),
+    Product.create({
+      name: 'J.A.R.V.I.S',
+      description: 'intellegent AI',
+      price: 42399,
+      inventory: 250,
+      imageUrl: '/public/images/products/jarvis.png'
+    }),
+    Product.create({
+      name: 'Anti-Gravity Device',
+      description: 'will neutralize the effects of gravity',
+      price: 45099,
+      inventory: 50,
+      imageUrl: '/public/images/products/anti-gravity.png'
     })
   ])
 

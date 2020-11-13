@@ -10,6 +10,7 @@
   width: 23%;
   margin-bottom: 2em;
   text-align: center;
+  z-index: 4;
 }
 
 .allProducts img {
