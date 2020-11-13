@@ -24,7 +24,7 @@ class SingleProduct extends Component {
     return (
       <div id="singleProductContainer">
         {this.state.loading ? (
-          <div id="loading" />
+          <h1 id="loading">Loading...</h1>
         ) : (
           <h1 id="singleProductItem">I am an Item</h1>
         )}

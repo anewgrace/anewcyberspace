@@ -1,0 +1,46 @@
+#navBar {
+  position: absolute;
+  /*background-color: black;*/
+  background-color: transparent;
+  width: 100%;
+  height: 80px;
+  border-radius: 0px 0px 30px 30px;
+  z-index: 10;
+}
+
+#logo {
+  position: absolute;
+  width: 250px;
+  height: auto;
+  top: 13px;
+  left: 15px;
+  border-radius: 0px 0px 30px 30px;
+}
+
+#loginButton {
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  width: 70px;
+  height: 50px;
+  line-height: 50px;
+  top: 14px;
+  right: 137.5px;
+  border-radius: 500px;
+}
+
+#signupButton {
+  position: absolute;
+  color: white;
+  text-align: center;
+  width: 100px;
+  height: 45px;
+  line-height: 45px;
+  top: 15px;
+  right: 20px;
+  border-radius: 500px;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+}

@@ -1,5 +1,13 @@
+@font-face {
+  font-family: NeuroPolitical;
+  src: url('../Fonts/neuropolitical.ttf');
+}
+
 body {
+  background-color: black;
   font-family: sans-serif;
+  padding: 0;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -9,11 +17,6 @@ a {
 
 label {
   display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
 }
 
 form div {

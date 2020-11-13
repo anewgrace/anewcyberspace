@@ -1,9 +1,8 @@
 import React from 'react'
-
 import {Navbar} from './components'
 import Routes from './routes'
 
-const App = () => {
+export default function app() {
   return (
     <div>
       <Navbar />
@@ -11,5 +10,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App
