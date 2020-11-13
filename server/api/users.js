@@ -4,13 +4,14 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email']
-    })
-    res.json(users)
+    if (req.session.userType !== 'admin')
+      res.send('ACCESS DENIED!!').status(404)
+    else {
+      const users = await User.findAll({
+        attributes: ['id', 'email']
+      })
+      res.json(users)
+    }
   } catch (err) {
     next(err)
   }
