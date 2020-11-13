@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getProductsFromDb} from '../../store/allProducts'
 import ProductTile from './ProductTile'
+import {Link} from 'react-router-dom'
 
 export class AllProducts extends React.Component {
   constructor() {
@@ -26,7 +27,16 @@ export class AllProducts extends React.Component {
         ) : (
           <div className="container">
             {this.props.allProducts.map(product => {
-              return <ProductTile key={product.id} {...product} />
+              let singleProductLink = `/products/${product.id}`
+              return (
+                <Link
+                  id="productTileLink"
+                  key={product.id}
+                  to={singleProductLink}
+                >
+                  <ProductTile {...product} />
+                </Link>
+              )
             })}
           </div>
         )}
