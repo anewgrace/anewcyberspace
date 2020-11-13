@@ -8,7 +8,8 @@ import {
   Signup,
   UserHome,
   HomePage,
-  SingleProduct
+  SingleProduct,
+  AllProducts
 } from './components'
 import {me} from './store'
 
@@ -52,6 +53,16 @@ class Routes extends Component {
               <SingleProduct />
             </div>
           )}
+        />
+        <Route
+          path="/products"
+          render={props => (
+            <div>
+              <Background />
+              <AllProducts />
+            </div>
+          )}
+          exact
         />
         {isLoggedIn && (
           <Switch>
