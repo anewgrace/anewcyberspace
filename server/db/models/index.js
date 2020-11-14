@@ -30,10 +30,6 @@ OrderItem.belongsTo(Order)
 Product.hasMany(OrderItem)
 OrderItem.belongsTo(Product)
 
-// old way
-// OrderItem.hasOne(Product)
-// Product.belongsTo(OrderItem)
-
 module.exports = {
   db,
   OrderItem,
