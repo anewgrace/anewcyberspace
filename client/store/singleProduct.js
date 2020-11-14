@@ -26,17 +26,11 @@ export function getSingleProductFromDb(singleProductId) {
 }
 
 export function addProductToGuestCart(singleProduct, quantity) {
-  /*
-  return (dispatch) => {
-    // ADD PRODUCT TO CART ON SESSION
-  }
-  */
   let guestCart = JSON.parse(global.localStorage.getItem('guestCart'))
-  if (guestCart[singleProduct.id]) {
-    let currentQuantity = parseInt(guestCart[singleProduct.id].quantity)
-    currentQuantity += parseInt(quantity)
-    guestCart[singleProduct.id].quantity = currentQuantity
+  if (guestCart && guestCart[singleProduct.id]) {
+    guestCart[singleProduct.id].quantity += parseInt(quantity)
   } else {
+    guestCart = [...guestCart]
     let guestItem = {
       name: singleProduct.name,
       description: singleProduct.description,
