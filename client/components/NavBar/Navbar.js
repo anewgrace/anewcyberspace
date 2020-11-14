@@ -6,18 +6,9 @@ import {logout} from '../../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navBar">
-    {
-      /*window.location.href.split('/')[4] &&
-    window.location.href.split('/')[3] === 'products' ? (
-      <div id="backToProducts" />
-    ) : (
-      */
-      <Link to="/home">
-        <img id="logo" src="/Images/CybergraceLogo.png" />
-      </Link>
-      /*
-    )*/
-    }
+    <Link to="/home">
+      <img id="logo" src="/Images/CybergraceLogo.png" />
+    </Link>
     <div id="navButtons">
       {isLoggedIn ? (
         <div id="userItems">
@@ -29,6 +20,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div id="guestItems">
           {/* The navbar will show these links before you log in */}
+          <h3 id="cartCount">0</h3>
+          <Link id="cartButton" to="/cart">
+            <img id="cartIcon" src="/Images/cart.png" />
+          </Link>
           <Link id="loginButton" to="/login">
             Login
           </Link>

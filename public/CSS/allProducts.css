@@ -2,22 +2,32 @@
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0);
   width: 23%;
+  height: 400px;
   margin-bottom: 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   padding: 0.5rem;
   z-index: 4;
+  transition: background-color 0.25s;
 }
 
 #productTileLink:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgb(57, 163, 192, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 30px -5px #000;
+}
+
+#productTileLink:hover > #productTile {
+  background-color: transparent;
 }
 
 .allProducts {
-  height: 75%;
+  position: absolute;
   width: 100%;
+  top: 0px;
+  bottom: -5%;
+  z-index: 4;
 }
 .allProducts .container::-webkit-scrollbar {
   display: none;
@@ -26,14 +36,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  top: 80px;
+  bottom: 0%;
+  padding-top: 20px;
+  padding-bottom: 80px;
   margin-left: 6rem;
   margin-right: 6rem;
   position: absolute;
-  top: 6rem;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  height: 85%;
+  z-index: 4;
 }
 .allProducts .product-tile {
   border-radius: 25px;
@@ -41,29 +54,32 @@
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.05);
   text-align: center;
-  z-index: 4;
   color: white;
   height: 100%;
+  transition: background-color 0.25s;
 }
 
 .allProducts .product-tile:hover {
-  background-color: rgba(255, 255, 255, 0);
-  color: #39a3c0;
+  background-color: transparent;
+  /*color: #39a3c0;*/
 }
 
 .allProducts img {
-  max-width: 100%;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
   border-radius: 25px 25px 0px 0px;
 }
-.allProducts .product-name,
+.allProducts .product-name {
+  margin-top: 1.25rem;
+  margin-bottom: 0rem;
+}
 .allProducts .product-description {
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
+  margin-top: 0.7rem;
 }
 .allProducts .product-name {
   font-family: NeuroPolitical;
 }
 .allProducts .product-price {
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
+  margin-top: 1.5rem;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ProductTile({imageUrl, name, price, description}) {
   return (
-    <div className="product-tile">
+    <div className="product-tile" id="productTile">
       <img src={imageUrl} />
       <h3 className="product-name">{name}</h3>
       <p className="product-description">{description}</p>
