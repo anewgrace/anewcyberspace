@@ -27,12 +27,13 @@ Order.belongsTo(User)
 Order.hasMany(OrderItem)
 OrderItem.belongsTo(Order)
 
-OrderItem.hasOne(Product)
-Product.belongsTo(OrderItem)
+Product.hasMany(OrderItem)
+OrderItem.belongsTo(Product)
 
 module.exports = {
   db,
   OrderItem,
   Product,
-  User
+  User,
+  Order
 }
