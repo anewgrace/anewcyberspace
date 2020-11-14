@@ -30,7 +30,8 @@ export function addProductToGuestCart(singleProduct, quantity) {
   if (guestCart && guestCart[singleProduct.id]) {
     guestCart[singleProduct.id].quantity += parseInt(quantity)
   } else {
-    guestCart = [...guestCart]
+    if (!guestCart) guestCart = []
+    else guestCart = [...guestCart]
     let guestItem = {
       name: singleProduct.name,
       description: singleProduct.description,
