@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {SingleProduct} from '../components'
+import ProductTile from '../components/Products/ProductTile'
 
 const SET_SINGLE_PRODUCT = 'SET_SINGLE_PRODUCT'
 
@@ -21,6 +23,30 @@ export function getSingleProductFromDb(singleProductId) {
         return -1
       })
   }
+}
+
+export function addProductToGuestCart(singleProduct, quantity) {
+  /*
+  return (dispatch) => {
+    // ADD PRODUCT TO CART ON SESSION
+  }
+  */
+  let guestCart = JSON.parse(global.localStorage.getItem('guestCart'))
+  if (guestCart[singleProduct.id]) {
+    let currentQuantity = parseInt(guestCart[singleProduct.id].quantity)
+    currentQuantity += parseInt(quantity)
+    guestCart[singleProduct.id].quantity = currentQuantity
+  } else {
+    let guestItem = {
+      name: singleProduct.name,
+      description: singleProduct.description,
+      price: singleProduct.price,
+      imageUrl: singleProduct.imageUrl,
+      quantity: parseInt(quantity)
+    }
+    guestCart[singleProduct.id] = guestItem
+  }
+  global.localStorage.setItem('guestCart', JSON.stringify(guestCart))
 }
 
 export default function singleProductReducer(state = initialState, action) {

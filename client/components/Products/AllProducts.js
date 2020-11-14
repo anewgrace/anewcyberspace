@@ -27,12 +27,11 @@ export class AllProducts extends React.Component {
         ) : (
           <div className="container">
             {this.props.allProducts.map(product => {
-              let singleProductLink = `/products/${product.id}`
               return (
                 <Link
                   id="productTileLink"
                   key={product.id}
-                  to={singleProductLink}
+                  to={'/products/' + product.id}
                 >
                   <ProductTile {...product} />
                 </Link>
