@@ -34,7 +34,7 @@ export function addProductToGuestCart(singleProduct, quantity) {
   let guestCart = JSON.parse(global.localStorage.getItem('guestCart'))
   if (guestCart[singleProduct.id]) {
     let currentQuantity = parseInt(guestCart[singleProduct.id].quantity)
-    currentQuantity += quantity
+    currentQuantity += parseInt(quantity)
     guestCart[singleProduct.id].quantity = currentQuantity
   } else {
     let guestItem = {
@@ -42,7 +42,7 @@ export function addProductToGuestCart(singleProduct, quantity) {
       description: singleProduct.description,
       price: singleProduct.price,
       imageUrl: singleProduct.imageUrl,
-      quantity: quantity
+      quantity: parseInt(quantity)
     }
     guestCart[singleProduct.id] = guestItem
   }
