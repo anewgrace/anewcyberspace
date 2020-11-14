@@ -6,9 +6,14 @@ import {logout} from '../../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navBar">
-    <Link to="/home">
-      <img id="logo" src="/Images/CybergraceLogo.png" />
-    </Link>
+    {window.location.href.split('/')[4] &&
+    window.location.href.split('/')[3] === 'products' ? (
+      <div id="backToProducts" />
+    ) : (
+      <Link to="/home">
+        <img id="logo" src="/Images/CybergraceLogo.png" />
+      </Link>
+    )}
     <div id="navButtons">
       {isLoggedIn ? (
         <div id="userItems">
