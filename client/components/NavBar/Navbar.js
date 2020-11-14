@@ -20,8 +20,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div id="guestItems">
           {/* The navbar will show these links before you log in */}
-          <h3 id="cartCount">0</h3>
           <Link id="cartButton" to="/cart">
+            <h3 id="cartCount">0</h3>
             <img id="cartIcon" src="/Images/cart.png" />
           </Link>
           <Link id="loginButton" to="/login">
