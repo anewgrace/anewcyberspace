@@ -6,6 +6,7 @@ const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'First Name',
     validate: {
       notEmpty: true
     }
@@ -13,6 +14,7 @@ const User = db.define('user', {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'Last Name',
     validate: {
       notEmpty: true
     }
