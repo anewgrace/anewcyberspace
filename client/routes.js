@@ -9,7 +9,8 @@ import {
   UserHome,
   HomePage,
   SingleProduct,
-  AllProducts
+  AllProducts,
+  CartPage
 } from './components'
 import {me} from './store'
 
@@ -59,6 +60,16 @@ class Routes extends Component {
             <div>
               <Background />
               <AllProducts />
+            </div>
+          )}
+          exact
+        />
+        <Route
+          path="/cart"
+          render={props => (
+            <div>
+              <Background />
+              <CartPage />
             </div>
           )}
           exact

@@ -1,0 +1,24 @@
+#cartContainer {
+  position: absolute;
+  width: 95%;
+  top: 85px;
+  left: 2.5%;
+  bottom: 2.5%;
+  background-color: rgb(255, 255, 255, 0.15);
+  border-radius: 25px;
+  z-index: 4;
+}
+
+#itemsContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#cartItemTest {
+  position: absolute;
+  color: white;
+  font-size: 2rem;
+  left: 50%;
+  margin-top: 30px;
+}

@@ -26,22 +26,19 @@ export function getSingleProductFromDb(singleProductId) {
 }
 
 export function addProductToGuestCart(singleProduct, quantity) {
-  let guestCart = JSON.parse(global.localStorage.getItem('guestCart'))
-  if (guestCart && guestCart[singleProduct.id]) {
-    guestCart[singleProduct.id].quantity += parseInt(quantity)
+  let cartItem = JSON.parse(global.localStorage.getItem(singleProduct.id))
+  if (cartItem) {
+    cartItem.quantity += parseInt(quantity)
   } else {
-    if (!guestCart) guestCart = []
-    else guestCart = [...guestCart]
-    let guestItem = {
+    cartItem = {
       name: singleProduct.name,
       description: singleProduct.description,
       price: singleProduct.price,
       imageUrl: singleProduct.imageUrl,
       quantity: parseInt(quantity)
     }
-    guestCart[singleProduct.id] = guestItem
   }
-  global.localStorage.setItem('guestCart', JSON.stringify(guestCart))
+  global.localStorage.setItem(singleProduct.id, JSON.stringify(cartItem))
 }
 
 export default function singleProductReducer(state = initialState, action) {
