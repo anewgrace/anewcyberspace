@@ -5,7 +5,6 @@ import Routes from './routes'
 export default function app() {
   return (
     <div>
-      <Navbar />
       <Routes />
     </div>
   )
