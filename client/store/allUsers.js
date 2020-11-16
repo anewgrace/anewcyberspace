@@ -9,7 +9,7 @@ export const setUsersState = users => ({
   users
 })
 
-//ALL USERs THUNK CREATOR
+//ALL USERS THUNK CREATOR
 export const getUsersFromDB = () => {
   return async dispatch => {
     try {
