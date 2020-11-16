@@ -30,13 +30,12 @@ if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
 passport.serializeUser((user, done) => {
-  let sessionUser = {id: user.id, userType: user.userType}
+  let sessionUser = {id: user.id}
   done(null, sessionUser)
 })
 
 passport.deserializeUser(async (sessionUser, done) => {
   try {
-    // console.log("DESERIALIZATION")
     const user = await db.models.user.findByPk(sessionUser.id)
     sessionUser.userType = user.userType
     done(null, sessionUser)
