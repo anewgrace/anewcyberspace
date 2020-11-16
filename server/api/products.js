@@ -19,3 +19,9 @@ router.get('/:singleProductId', async (req, res, next) => {
     next(err)
   }
 })
+
+//post
+
+//delete
+
+//update - price, name, description, inventory, imageURL, etc.
