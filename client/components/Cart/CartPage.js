@@ -8,25 +8,29 @@ export class CartPage extends Component {
     super()
     this.state = {
       loading: false,
-      cartItems: []
+      cartItems: [],
+      userType: ''
     }
   }
 
   componentDidMount() {
     /*
-    if(!session.userId) {    <-- USER EXISTS (NEED TO MAKE THIS CORRECT), GET ROUTE!!
+    if (false) {
+      //USER EXISTS, GET ROUTE!!
       this.setState({loading: true}, () => {
-        getCartItems(orderId).then((items) => {
-          this.setState({cartItems: items});
+        getCartItems(orderId).then(items => {
+          this.setState({cartItems: items, userType: 'user'})
         })
       })
-    }
-    */
-
-    //else {     <-- USER DOESN'T EXIST, LOCAL STORAGE!!
+    } else {
+      */
+    //USER DOESN'T EXIST, LOCAL STORAGE!!
     const items = Object.values(global.localStorage)
-    console.log(items)
-    this.setState({cartItems: items, loading: false})
+    this.setState({
+      cartItems: items,
+      loading: false,
+      userType: 'guest'
+    })
     //}
   }
 
@@ -36,7 +40,7 @@ export class CartPage extends Component {
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
             {this.state.cartItems.map((item, idx) => {
-              if (item) {
+              if (this.state.userType === 'guest') {
                 return (
                   <div key={idx} id="cartItemTest">
                     {JSON.parse(item).name}

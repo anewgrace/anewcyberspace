@@ -58,3 +58,14 @@
   border-style: solid;
   outline: none;
 }
+
+#formTitleText {
+  position: absolute;
+  color: white;
+  text-align: center;
+  font-size: 4.5rem;
+  font-family: NeuroPolitical;
+  width: 100%;
+  top: -150px;
+  display: block;
+}
