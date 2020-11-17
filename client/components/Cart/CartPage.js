@@ -1,7 +1,7 @@
 import {session} from 'passport'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {retrieveCart} from '../../store/order'
+import {retrieveCart, putCartItem, deleteCartItem} from '../../store/order'
 import {Link} from 'react-router-dom'
 
 export class CartPage extends Component {
@@ -15,17 +15,28 @@ export class CartPage extends Component {
     this.removeCartItem = this.removeCartItem.bind(this)
   }
 
-  handleQuantityChange() {
+  handleQuantityChange(event, cartItem) {
+    console.log('target value', event.target.value, cartItem)
     if (this.props.isLoggedIn) {
       //Keaton User Cart
+      cartItem.quantity = event.target.value
+      this.props.updateCartItem(cartItem).then(() => {
+        this.setState({
+          cartItems: this.props.cart.OrderItems
+        })
+      })
     } else {
       //Alex Guest Cart
     }
   }
 
-  removeCartItem() {
+  removeCartItem(cartItem) {
     if (this.props.isLoggedIn) {
-      //Keaton User Cart
+      this.props.deleteCartItem(cartItem).then(() => {
+        this.setState({
+          cartItems: this.props.cart.OrderItems
+        })
+      })
     } else {
       //Alex Guest Cart
     }
@@ -64,15 +75,19 @@ export class CartPage extends Component {
       <div id="cartContainer">
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
-            {this.state.cartItems.map((item, idx) => {
+            {this.state.cartItems.map(item => {
               totalPrice += item.price * item.quantity
               let optionTags = []
               for (let i = 1; i < 100; i++) {
                 optionTags.push(i)
               }
               return (
-                <div key={idx} id="cartItem">
-                  <button id="removeButton" onClick={this.removeCartItem()}>
+                <div key={item.id} id="cartItem">
+                  <button
+                    type="button"
+                    id="removeButton"
+                    onClick={() => this.removeCartItem(item)}
+                  >
                     +
                   </button>
                   {this.props.isLoggedIn ? (
@@ -94,7 +109,7 @@ export class CartPage extends Component {
                   <select
                     id="chooseQuantityCart"
                     name="quantity"
-                    onChange={() => this.handleQuantityChange(event)}
+                    onChange={() => this.handleQuantityChange(event, item)}
                   >
                     {optionTags.map((tag, idx) => {
                       if (tag === item.quantity) {
@@ -151,7 +166,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  retrieveCart: () => dispatch(retrieveCart())
+  retrieveCart: () => dispatch(retrieveCart()),
+  updateCartItem: cartItem => dispatch(putCartItem(cartItem)),
+  deleteCartItem: cartItem => dispatch(deleteCartItem(cartItem))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage)
