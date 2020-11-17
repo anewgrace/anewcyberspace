@@ -34,7 +34,10 @@ const AuthForm = props => {
             {displayName}
           </button>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
+        {error &&
+          error.response && (
+            <div id="errorResponse"> {error.response.data} </div>
+          )}
       </form>
       <a id="googleLink" href="/auth/google">
         {displayName} with Google
@@ -74,6 +77,7 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
+      //dispatch(mergeCarts([array of guest cart items]))
     }
   }
 }

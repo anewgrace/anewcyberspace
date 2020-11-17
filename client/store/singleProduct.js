@@ -28,9 +28,10 @@ export function getSingleProductFromDb(singleProductId) {
 export function addProductToGuestCart(singleProduct, quantity) {
   let cartItem = JSON.parse(global.localStorage.getItem(singleProduct.id))
   if (cartItem) {
-    cartItem.quantity += parseInt(quantity)
+    cartItem.quantity = parseInt(quantity)
   } else {
     cartItem = {
+      id: singleProduct.id,
       name: singleProduct.name,
       description: singleProduct.description,
       price: singleProduct.price,
@@ -39,6 +40,7 @@ export function addProductToGuestCart(singleProduct, quantity) {
     }
   }
   global.localStorage.setItem(singleProduct.id, JSON.stringify(cartItem))
+  return cartItem
 }
 
 export default function singleProductReducer(state = initialState, action) {
