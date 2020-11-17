@@ -16,7 +16,6 @@ export class CartPage extends Component {
     this.removeCartItem = this.removeCartItem.bind(this)
   }
 
-
   handleQuantityChange(event, cartItem) {
     if (this.props.isLoggedIn) {
       cartItem.quantity = event.target.value
@@ -132,8 +131,7 @@ export class CartPage extends Component {
                         )
                       } else {
                         return (
-                          <option 
-                          ={idx} value={tag}>
+                          <option key={idx} value={tag}>
                             {tag.toString()}
                           </option>
                         )
