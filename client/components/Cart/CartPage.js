@@ -16,7 +16,6 @@ export class CartPage extends Component {
     this.removeCartItem = this.removeCartItem.bind(this)
   }
 
-
   handleQuantityChange(event, cartItem) {
     if (this.props.isLoggedIn) {
       cartItem.quantity = event.target.value
@@ -87,7 +86,7 @@ export class CartPage extends Component {
       <div id="cartContainer">
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
-            {this.state.cartItems.map(item => {
+            {this.state.cartItems.map((item, idx) => {
               totalPrice += item.price * item.quantity
               let optionTags = []
               for (let i = 1; i < 100; i++) {
@@ -132,8 +131,7 @@ export class CartPage extends Component {
                         )
                       } else {
                         return (
-                          <option 
-                          ={idx} value={tag}>
+                          <option key={idx} value={tag}>
                             {tag.toString()}
                           </option>
                         )
