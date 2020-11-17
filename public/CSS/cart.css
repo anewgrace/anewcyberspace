@@ -35,14 +35,36 @@
 }
 
 #removeButton {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: #444;
   width: 40px;
   height: 40px;
   border-radius: 200px;
   transform: rotate(45deg);
   outline: none;
-  border-width: 0;
+  border-width: 1;
+  border-color: #444;
   border-style: solid;
+  margin-top: 76.5px;
+  margin-left: 92.5%;
+  transition: background-color 0.25s color 0.25s;
+}
+
+#removeButton:hover {
+  background-color: rgb(245, 141, 141);
+  color: white;
+  border-width: 0;
+  box-shadow: 0px 0px 20px -10px #000;
+}
+
+#cartItemImage {
+  height: 95%;
+  width: 200px;
+  margin-top: -111.5px;
+  margin-left: 5px;
+  border-radius: 25px 0px 0px 25px;
+  object-fit: cover;
 }
 
 #cartItemName {
@@ -50,8 +72,8 @@
   text-align: left;
   font-size: 2rem;
   width: 90%;
-  margin-left: 2.5%;
-  margin-top: -15px;
+  margin-left: 230px;
+  margin-top: -165px;
 }
 
 #cartItemDescription {
@@ -59,9 +81,8 @@
   text-align: left;
   font-size: 0.9rem;
   width: 90%;
-  margin-left: 2.5%;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-left: 230px;
+  margin-top: -15px;
 }
 
 #chooseQuantityCart {
@@ -76,9 +97,8 @@
   height: 40px;
   line-height: 50px;
   left: 0px;
-  margin-top: 30px;
-  margin-left: 2.5%;
-  bottom: 10px;
+  margin-top: 10px;
+  margin-left: 230px;
   border-radius: 500px;
   border-width: 0px;
   border-style: solid;
@@ -90,10 +110,11 @@
 #singleItemPrice {
   color: #444;
   text-align: right;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  font-weight: 600;
   width: 90%;
-  margin-right: 5%;
-  margin-top: -110px;
+  margin-right: 7.5%;
+  margin-top: -102.5px;
 }
 
 #totalItemPrice {
@@ -102,8 +123,8 @@
   font-size: 1.25rem;
   font-weight: 300;
   width: 90%;
-  margin-right: 5%;
-  margin-top: -25px;
+  margin-right: 7.5%;
+  margin-top: -15px;
 }
 
 #totalCartPrice {
@@ -113,7 +134,8 @@
   font-size: 1.5rem;
   font-weight: 300;
   width: 50%;
-  right: 21.5%;
+  right: 5%;
+  margin-right: 220px;
   bottom: 4.5%;
 }
 

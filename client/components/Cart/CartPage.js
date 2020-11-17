@@ -5,8 +5,8 @@ import {retrieveCart} from '../../store/order'
 import {Link} from 'react-router-dom'
 
 export class CartPage extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loading: false,
       cartItems: [],
@@ -15,7 +15,7 @@ export class CartPage extends Component {
   }
 
   componentDidMount() {
-    if (this.state.loading) {
+    if (this.props.isLoggedIn) {
       this.setState({loading: true}, () => {
         retrieveCart().then(() => {
           this.setState({
@@ -46,6 +46,10 @@ export class CartPage extends Component {
                 return (
                   <div key={idx} id="cartItem">
                     <button id="removeButton">+</button>
+                    <img
+                      id="cartItemImage"
+                      src={'../' + JSON.parse(item).imageUrl}
+                    />
                     <h2 id="cartItemName">{JSON.parse(item).name}</h2>
                     <p id="cartItemDescription">
                       {JSON.parse(item).description}

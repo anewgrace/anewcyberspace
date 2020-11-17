@@ -10,7 +10,9 @@ const Navbar = ({handleClick, isLoggedIn}) => {
     <div id="navBar">
       {window.location.href.split('/')[3] === 'products' &&
       window.location.href.split('/')[4] ? (
-        <div />
+        <Link id="backLink" to="/products">
+          <h1 id="backToProducts">← Back</h1>
+        </Link>
       ) : (
         <Link to="/home">
           <img id="logo" src="/Images/CybergraceLogo.png" />
