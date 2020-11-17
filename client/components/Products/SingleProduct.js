@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {addOrderItemToCart, me} from '../../store'
 import {
   getSingleProductFromDb,
   addProductToGuestCart
@@ -21,9 +22,10 @@ class SingleProduct extends Component {
   }
 
   addProductToCart = () => {
-    if (this.props.isLogged) {
-      //MAX's CODE
+    if (this.props.isLoggedIn) {
+      this.props.sendOrderItem(this.props.singleProduct)
     } else {
+      console.log('NOT LOGGED IN')
       addProductToGuestCart(this.props.singleProduct, this.state.quantity)
     }
   }
@@ -92,7 +94,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getSingleProductFromDb: singleProductId =>
-    dispatch(getSingleProductFromDb(singleProductId))
+    dispatch(getSingleProductFromDb(singleProductId)),
+  sendOrderItem: orderItem => dispatch(addOrderItemToCart(orderItem))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)

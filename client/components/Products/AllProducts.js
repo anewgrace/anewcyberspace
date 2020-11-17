@@ -12,7 +12,7 @@ export class AllProducts extends React.Component {
     }
   }
   componentDidMount() {
-    console.log('products props:', this.props)
+    // console.log('products props:', this.props)
     this.setState({loading: true}, () => {
       this.props.loadProducts().then(() => {
         this.setState({loading: false})

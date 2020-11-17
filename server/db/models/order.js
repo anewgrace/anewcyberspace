@@ -26,7 +26,7 @@ Order.getCart = async function(userId) {
     //includes info for OrderItem and Product
     include: {model: OrderItem, include: Product}
   })
-  console.log('modelcart', cart)
+  // console.log('modelcart', cart)
   return cart
 }
 
