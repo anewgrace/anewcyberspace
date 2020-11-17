@@ -133,98 +133,98 @@ async function seed() {
       description: 'a flying backpack',
       price: 123399,
       inventory: 35
-      //imageUrl: 'images/products/jetpack.jpeg'
+      //imageUrl: 'http://cybergrace.herokuapp.com/Images/products/jetpack.jpeg'
     }),
     Product.create({
       name: 'Light Saber',
       description: "a jedi's best friend",
       price: 43213299,
       inventory: 20
-      // imageUrl: 'images/products/light-saber.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/light-saber.jpg'
     }),
     Product.create({
       name: 'Laser Blaster',
       description: 'a blaster that shoots lasers',
       price: 27399,
       inventory: 100
-      // imageUrl: 'images/products/laser-blaster.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/laser-blaster.png'
     }),
     Product.create({
       name: 'X-Wing Fighter',
       description: 'x-shaped space ship',
       price: 408822999,
       inventory: 5
-      // imageUrl: 'images/products/x-wing.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/x-wing.jpg'
     }),
     Product.create({
       name: 'Millenium Falcon',
       description: 'fastest ship around',
       price: 999999999,
       inventory: 1
-      // imageUrl: 'images/products/millenium-falcon.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/millenium-falcon.jpg'
     }),
     Product.create({
       name: 'Hooverboard',
       description: 'a skateboard that hoovers',
       price: 1689599,
       inventory: 1000
-      // imageUrl: 'images/products/hover-board.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/hover-board.jpg'
     }),
     Product.create({
       name: 'Iron Man Suit',
       description: 'flying wearable robot suit',
       price: 258898999,
       inventory: 15
-      // imageUrl: 'images/products/ironman.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/ironman.png'
     }),
     Product.create({
       name: 'Badassium',
       description: 'rare element developed by Tony Stark',
       price: 707288799,
       inventory: 5
-      // imageUrl: 'images/products/badassium.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/badassium.png'
     }),
     Product.create({
       name: 'J.A.R.V.I.S',
       description: 'intellegent AI',
       price: 42399,
       inventory: 250
-      // imageUrl: 'images/products/jarvis.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/jarvis.jpg'
     }),
     Product.create({
       name: 'Anti-Gravity Device',
       description: 'will neutralize the effects of gravity',
       price: 45099,
       inventory: 50
-      // imageUrl: 'images/products/anti-gravity.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/anti-gravity.png'
     }),
     Product.create({
       name: 'Iron Man Suit',
       description: 'flying wearable robot suit',
       price: 258898999,
       inventory: 15
-      // imageUrl: 'images/products/ironman.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/ironman.png'
     }),
     Product.create({
       name: 'Badassium',
       description: 'rare element developed by Tony Stark',
       price: 707288799,
       inventory: 5
-      // imageUrl: 'images/products/badassium.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/badassium.png'
     }),
     Product.create({
       name: 'J.A.R.V.I.S',
       description: 'intellegent AI',
       price: 42399,
       inventory: 250
-      // imageUrl: 'images/products/jarvis.jpg'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/jarvis.jpg'
     }),
     Product.create({
       name: 'Anti-Gravity Device',
       description: 'will neutralize the effects of gravity',
       price: 45099,
       inventory: 50
-      // imageUrl: 'images/products/anti-gravity.png'
+      // imageUrl: 'http://cybergrace.herokuapp.com/Images/products/anti-gravity.png'
     })
   ])
 
