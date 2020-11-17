@@ -4,12 +4,14 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Background,
+  Navbar,
   Login,
   Signup,
   UserHome,
   HomePage,
   SingleProduct,
-  AllProducts
+  AllProducts,
+  CartPage
 } from './components'
 import {me} from './store'
 
@@ -24,61 +26,26 @@ class Routes extends Component {
   render() {
     const {isLoggedIn} = this.props
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route
-          path="/login"
-          render={props => (
-            <div>
-              <Background />
-              <Login />
-            </div>
+      <div>
+        <Background />
+        <Navbar />
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/products/:singleProductId" component={SingleProduct} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/cart" component={CartPage} />
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/home" component={HomePage} />
+            </Switch>
           )}
-        />
-        <Route
-          path="/signup"
-          render={props => (
-            <div>
-              <Background />
-              <Signup />
-            </div>
-          )}
-        />
-        <Route
-          path="/products/:singleProductId"
-          render={props => (
-            <div>
-              <Background />
-              <SingleProduct />
-            </div>
-          )}
-        />
-        <Route
-          path="/products"
-          render={props => (
-            <div>
-              <Background />
-              <AllProducts />
-            </div>
-          )}
-          exact
-        />
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our HomePage component as a fallback */}
-        <Route
-          render={props => (
-            <div>
-              <Background />
-              <HomePage />
-            </div>
-          )}
-        />
-      </Switch>
+          {/* Displays our HomePage component as a fallback */}
+          <Route component={HomePage} />
+        </Switch>
+      </div>
     )
   }
 }

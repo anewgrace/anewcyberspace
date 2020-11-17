@@ -6,6 +6,7 @@ import allUsersReducer from './allUsers'
 import singleProductReducer from './singleProduct'
 import allProductsReducer from './allProducts'
 import userReducer from './user'
+import orderReducer from './order'
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   singleProduct: singleProductReducer,
   allUsers: allUsersReducer,
   allProducts: allProductsReducer,
-  user: userReducer
+  user: userReducer,
+  order: orderReducer
 })
 
 const store = createStore(reducer, middleware)
@@ -24,3 +26,4 @@ export default store
 export * from './allUsers'
 export * from './singleProduct'
 export * from './user'
+export * from './order'
