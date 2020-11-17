@@ -11,6 +11,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// SIMILAR ROUTE TO MERGE GUEST CART WITH USER CART
+// IF INPUT ARRAY IS NOT EMPTY, CREATE ITEMS --- ELSE, NOTHING HAPPENS.
 router.post('/', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)

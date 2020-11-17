@@ -17,7 +17,7 @@ const reducer = combineReducers({
   allUsers: allUsersReducer,
   allProducts: allProductsReducer,
   user: userReducer,
-  order: orderReducer
+  cart: orderReducer
 })
 
 const store = createStore(reducer, middleware)
