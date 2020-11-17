@@ -13,12 +13,14 @@ router.get('/', async (req, res, next) => {
 
 // SIMILAR ROUTE TO MERGE GUEST CART WITH USER CART
 // IF INPUT ARRAY IS NOT EMPTY, CREATE ITEMS --- ELSE, NOTHING HAPPENS.
+
 router.post('/', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
+    console.log('REQ.BODY', req.body)
     const addedItem = await cart.createOrderItem({
       quantity: req.body.quantity,
-      productId: req.body.productId,
+      productId: req.body.id,
       price: req.body.price
     })
     console.log('added-------', addedItem)
@@ -31,7 +33,10 @@ router.post('/', async (req, res, next) => {
 router.delete('/:orderItemId', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
+
+
     if (cart.userId == req.user.id) {
+
       const deleted = await OrderItem.destroy({
         where: {id: req.params.orderItemId}
       })
@@ -48,7 +53,10 @@ router.delete('/:orderItemId', async (req, res, next) => {
 router.put('/:orderItemId', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
+
+
     if (cart.userId == req.user.id) {
+
       const updated = await OrderItem.update(
         {quantity: req.body.quantity},
         {

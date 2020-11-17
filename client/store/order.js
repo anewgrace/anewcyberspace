@@ -24,11 +24,12 @@ const removeCartItem = cartItem => ({
   cartItem
 })
 //-------------THUNKS----------------
-export function addOrderItemToCart(orderItem) {
+export function addOrderItemToCart(singleProduct) {
   return async dispatch => {
     try {
-      await axios.post('/api/cart/:orderItemId', orderItem)
-      dispatch(addOrderItem(orderItem))
+      const {data: created} = await axios.post('/api/cart/', singleProduct)
+
+      dispatch(addOrderItem(created))
     } catch (error) {
       console.log('ERROR IN ORDER THUNK:', error)
     }
@@ -78,13 +79,19 @@ export function deleteCartItem(cartItem) {
 export default function orderReducer(state = {}, action) {
   switch (action.type) {
     case ADD_ORDER_ITEM:
-      return {...state, orderItems: [...state.orderItems, action.orderItem]}
+      console.log('state', state)
+      console.log('state.OrderItems', state.OrderItems)
+      console.log('expected return', {
+        ...state,
+        OrderItems: [...state.OrderItems, action.orderItem]
+      })
+      return {...state, OrderItems: [...state.OrderItems, action.orderItem]}
     case SET_CART:
       return action.cart
     case UPDATE_QUANTITY:
       return {
         ...state,
-        orderItems: state.orderItems.map(item => {
+        OrderItems: state.OrderItems.map(item => {
           if (action.orderItem.id === item.id) return action.orderItem
           else return item
         })
@@ -93,6 +100,7 @@ export default function orderReducer(state = {}, action) {
       return {
         ...state,
         OrderItems: state.OrderItems.filter(
+
           item => action.cartItem.id !== item.id
         ),
         updatedAt: Date.now()
