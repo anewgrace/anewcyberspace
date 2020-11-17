@@ -9,28 +9,52 @@ export class CartPage extends Component {
     super(props)
     this.state = {
       loading: false,
-      cartItems: [],
-      userType: ''
+      cartItems: []
+    }
+    this.handleQuantityChange = this.handleQuantityChange.bind(this)
+    this.removeCartItem = this.removeCartItem.bind(this)
+  }
+
+  handleQuantityChange() {
+    if (this.props.isLoggedIn) {
+      //Keaton User Cart
+    } else {
+      //Alex Guest Cart
+    }
+  }
+
+  removeCartItem() {
+    if (this.props.isLoggedIn) {
+      //Keaton User Cart
+    } else {
+      //Alex Guest Cart
     }
   }
 
   componentDidMount() {
     if (this.props.isLoggedIn) {
       this.setState({loading: true}, () => {
-        retrieveCart().then(() => {
+        this.props.retrieveCart().then(() => {
           this.setState({
-            cartItems: this.props.cart.orderItems,
-            userType: 'user'
+            cartItems: this.props.cart.OrderItems,
+            loading: false
           })
         })
       })
     } else {
       const items = Object.values(global.localStorage)
-      this.setState({
-        cartItems: items,
-        loading: false,
-        userType: 'guest'
-      })
+      this.setState(
+        {
+          cartItems: items,
+          loading: false
+        },
+        () => {
+          let newItemArray = this.state.cartItems.map(item => {
+            return JSON.parse(item)
+          })
+          this.setState({cartItems: newItemArray})
+        }
+      )
     }
   }
 
@@ -41,67 +65,71 @@ export class CartPage extends Component {
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
             {this.state.cartItems.map((item, idx) => {
-              if (this.state.userType === 'guest') {
-                totalPrice += JSON.parse(item).price * JSON.parse(item).quantity
-                let optionTags = []
-                for (let i = 1; i < 100; i++) {
-                  optionTags.push(i)
-                }
-                return (
-                  <div key={idx} id="cartItem">
-                    <button id="removeButton">+</button>
-                    <img
-                      id="cartItemImage"
-                      src={'../' + JSON.parse(item).imageUrl}
-                    />
-                    <h2 id="cartItemName">{JSON.parse(item).name}</h2>
-                    <p id="cartItemDescription">
-                      {JSON.parse(item).description}
-                    </p>
-                    <select
-                      id="chooseQuantityCart"
-                      name="quantity"
-                      onChange={() => this.handleQuantityChange(event)}
-                    >
-                      {optionTags.map((tag, idx) => {
-                        if (tag === JSON.parse(item).quantity) {
-                          return (
-                            <option key={idx} value={tag} selected>
-                              {tag.toString()}
-                            </option>
-                          )
-                        } else {
-                          return (
-                            <option key={idx} value={tag}>
-                              {tag.toString()}
-                            </option>
-                          )
-                        }
-                      })}
-                    </select>
-                    <h2 id="singleItemPrice">
-                      {'$' +
-                        (JSON.parse(item).price / 100).toLocaleString() +
-                        ' (' +
-                        JSON.parse(item).quantity +
-                        ')'}
-                    </h2>
-                    <h2 id="totalItemPrice">
-                      {'Total: $' +
-                        (
-                          JSON.parse(item).price *
-                          JSON.parse(item).quantity /
-                          100
-                        ).toLocaleString()}
-                    </h2>
-                    {/*
+              totalPrice += item.price * item.quantity
+              let optionTags = []
+              for (let i = 1; i < 100; i++) {
+                optionTags.push(i)
+              }
+              return (
+                <div key={idx} id="cartItem">
+                  <button id="removeButton" onClick={this.removeCartItem()}>
+                    +
+                  </button>
+                  {this.props.isLoggedIn ? (
+                    <>
+                      <img
+                        id="cartItemImage"
+                        src={'../' + item.product.imageUrl}
+                      />
+                      <h2 id="cartItemName">{item.product.name}</h2>
+                      <p id="cartItemDescription">{item.product.description}</p>
+                    </>
+                  ) : (
+                    <>
+                      <img id="cartItemImage" src={'../' + item.imageUrl} />
+                      <h2 id="cartItemName">{item.name}</h2>
+                      <p id="cartItemDescription">{item.description}</p>
+                    </>
+                  )}
+                  <select
+                    id="chooseQuantityCart"
+                    name="quantity"
+                    onChange={() => this.handleQuantityChange(event)}
+                  >
+                    {optionTags.map((tag, idx) => {
+                      if (tag === item.quantity) {
+                        return (
+                          <option key={idx} value={tag} selected>
+                            {tag.toString()}
+                          </option>
+                        )
+                      } else {
+                        return (
+                          <option key={idx} value={tag}>
+                            {tag.toString()}
+                          </option>
+                        )
+                      }
+                    })}
+                  </select>
+                  <h2 id="singleItemPrice">
+                    {'$' +
+                      (item.price / 100).toLocaleString() +
+                      ' (' +
+                      item.quantity +
+                      ')'}
+                  </h2>
+                  <h2 id="totalItemPrice">
+                    {'Total: $' +
+                      (item.price * item.quantity / 100).toLocaleString()}
+                  </h2>
+                  {/*
                       (document.getElementById(
                         'chooseQuantityCart'
-                      ).value = JSON.parse(item).quantity)
+                      ).value = (item).quantity)
                       */}
-                  </div>
-                )
-              }
+                </div>
+              )
             })}
           </div>
         ) : (
@@ -123,7 +151,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getCartItems: () => dispatch(retrieveCart())
+  retrieveCart: () => dispatch(retrieveCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage)

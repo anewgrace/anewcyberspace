@@ -21,7 +21,11 @@ class SingleProduct extends Component {
   }
 
   addProductToCart = () => {
-    addProductToGuestCart(this.props.singleProduct, this.state.quantity)
+    if (this.props.isLogged) {
+      //MAX's CODE
+    } else {
+      addProductToGuestCart(this.props.singleProduct, this.state.quantity)
+    }
   }
 
   componentDidMount() {

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function Background() {
-  console.log('RERENDERED BACKGROUND!')
   return (
     <div>
       <div id="backgroundOverlay" />

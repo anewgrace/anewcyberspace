@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import {logout} from '../../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => {
-  console.log('RERENDERED!')
   return (
     <div id="navBar">
       {window.location.href.split('/')[3] === 'products' &&
