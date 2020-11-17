@@ -51,10 +51,11 @@ router.put('/:orderItemId', async (req, res, next) => {
     console.log(cart)
     if (cart.userId == req.user.id) {
       const updated = await OrderItem.update(
+        {quantity: req.body.quantity},
         {
-          quantity: req.body.quantity
-        },
-        {where: {id: req.params.orderItemId}}
+          where: {id: req.params.orderItemId},
+          returning: true
+        }
       )
       console.log('updated-------', updated)
       res.json(updated)
