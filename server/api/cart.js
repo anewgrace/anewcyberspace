@@ -24,7 +24,6 @@ router.post('/', async (req, res, next) => {
       price: req.body.price
     })
     console.log('added-------', addedItem)
-
     res.json(addedItem)
   } catch (err) {
     next(err)
@@ -34,8 +33,10 @@ router.post('/', async (req, res, next) => {
 router.delete('/:orderItemId', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
-    console.log(cart)
-    if (cart.userId === req.user.id) {
+
+
+    if (cart.userId == req.user.id) {
+
       const deleted = await OrderItem.destroy({
         where: {id: req.params.orderItemId}
       })
@@ -52,8 +53,10 @@ router.delete('/:orderItemId', async (req, res, next) => {
 router.put('/:orderItemId', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
-    console.log(cart)
-    if (cart.userId === req.user.id) {
+
+
+    if (cart.userId == req.user.id) {
+
       const updated = await OrderItem.update(
         {quantity: req.body.quantity},
         {

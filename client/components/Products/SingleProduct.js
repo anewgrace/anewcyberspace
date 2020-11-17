@@ -25,8 +25,13 @@ class SingleProduct extends Component {
     if (this.props.isLoggedIn) {
       this.props.sendOrderItem(this.props.singleProduct)
     } else {
-      console.log('NOT LOGGED IN')
-      addProductToGuestCart(this.props.singleProduct, this.state.quantity)
+
+
+      this.setState({loading: true}, () => {
+        addProductToGuestCart(this.props.singleProduct, this.state.quantity)
+        this.setState({loading: false})
+      })
+
     }
   }
 
@@ -41,6 +46,16 @@ class SingleProduct extends Component {
   }
 
   render() {
+    let optionTags = []
+    for (let i = 1; i < 100; i++) {
+      optionTags.push(i)
+    }
+    let currentQuantity = 1
+    let item = JSON.parse(
+      global.localStorage.getItem(this.props.singleProduct.id)
+    )
+    if (this.props.singleProduct && item && item.quantity)
+      currentQuantity = item.quantity
     return (
       <div id="singleProductContainer">
         {this.state.loading ? (
@@ -64,22 +79,31 @@ class SingleProduct extends Component {
                 name="quantity"
                 onChange={() => this.handleQuantityChange(event)}
               >
-                <option value={1} selected>
-                  1
-                </option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
-                <option value={8}>8</option>
-                <option value={9}>9</option>
-                <option value={10}>10</option>
+                {optionTags.map((tag, idx) => {
+                  if (tag === currentQuantity) {
+                    return (
+                      <option key={idx} value={tag} selected>
+                        {tag.toString()}
+                      </option>
+                    )
+                  } else {
+                    return (
+                      <option key={idx} value={tag}>
+                        {tag.toString()}
+                      </option>
+                    )
+                  }
+                })}
               </select>
-              <button id="addToCart" onClick={() => this.addProductToCart()}>
-                Add To Cart
-              </button>
+              {item ? (
+                <button id="addToCart" onClick={() => this.addProductToCart()}>
+                  Update Cart
+                </button>
+              ) : (
+                <button id="addToCart" onClick={() => this.addProductToCart()}>
+                  Add To Cart
+                </button>
+              )}
             </div>
           </div>
         )}

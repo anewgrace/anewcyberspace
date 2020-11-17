@@ -13,17 +13,32 @@ const Navbar = ({handleClick, isLoggedIn}) => {
           <h1 id="backToProducts">← Back</h1>
         </Link>
       ) : (
-        <Link to="/home">
-          <img id="logo" src="/Images/CybergraceLogo.png" />
-        </Link>
+        <div>
+          {window.location.href.split('/')[3] === 'confirmation' ? (
+            <Link id="backLink" to="/cart">
+              <h1 id="backToProducts">← Back</h1>
+            </Link>
+          ) : (
+            <Link to="/home">
+              <img id="logo" src="/Images/CybergraceLogo.png" />
+            </Link>
+          )}
+        </div>
       )}
       <div id="navButtons">
         {isLoggedIn ? (
           <div id="userItems">
             {/* The navbar will show these links after you log in */}
+            <Link id="cartButton" to="/cart">
+              <h3 id="cartCount">0</h3>
+              <img id="cartIcon" src="/Images/cart.png" />
+            </Link>
             <a id="logoutButton" href="#" onClick={handleClick}>
               Logout
             </a>
+            <Link id="dashboardButton" to="/dashboard">
+              Dashboard
+            </Link>
           </div>
         ) : (
           <div id="guestItems">

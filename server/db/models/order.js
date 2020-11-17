@@ -17,7 +17,6 @@ const Order = db.define('order', {
 
 //class method to getCart
 Order.getCart = async function(userId) {
-  console.log('got to model___---__---')
   const [cart, created] = await Order.findOrCreate({
     where: {
       status: 'active',
@@ -26,7 +25,7 @@ Order.getCart = async function(userId) {
     //includes info for OrderItem and Product
     include: {model: OrderItem, include: Product}
   })
-  // console.log('modelcart', cart)
+
   return cart
 }
 
