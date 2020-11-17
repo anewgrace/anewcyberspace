@@ -25,13 +25,10 @@ class SingleProduct extends Component {
     if (this.props.isLoggedIn) {
       this.props.sendOrderItem(this.props.singleProduct)
     } else {
-
-
       this.setState({loading: true}, () => {
         addProductToGuestCart(this.props.singleProduct, this.state.quantity)
         this.setState({loading: false})
       })
-
     }
   }
 
@@ -62,10 +59,7 @@ class SingleProduct extends Component {
           <h1 id="loading">Loading...</h1>
         ) : (
           <div>
-            <img
-              id="productImage"
-              src={'../' + this.props.singleProduct.imageUrl}
-            />
+            <img id="productImage" src={this.props.singleProduct.imageUrl} />
             <h1 id="productName">{this.props.singleProduct.name}</h1>
             <h3 id="productPrice">
               {'$' + (this.props.singleProduct.price / 100).toLocaleString()}

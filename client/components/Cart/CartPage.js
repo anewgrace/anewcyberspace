@@ -103,10 +103,7 @@ export class CartPage extends Component {
                   </button>
                   {this.props.isLoggedIn ? (
                     <>
-                      <img
-                        id="cartItemImage"
-                        src={'../' + item.product.imageUrl}
-                      />
+                      <img id="cartItemImage" src={item.product.imageUrl} />
                       <h2 id="cartItemName">{item.product.name}</h2>
                       <p id="cartItemDescription">{item.product.description}</p>
                     </>
