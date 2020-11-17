@@ -1,56 +1,15 @@
 import {session} from 'passport'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {retrieveCart, putCartItem, deleteCartItem} from '../../store/order'
+import {retrieveCart} from '../../store/order'
 import {Link} from 'react-router-dom'
-import {addProductToGuestCart} from '../../store/singleProduct'
 
-export class CartPage extends Component {
+export class Confirmation extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loading: false,
       cartItems: []
-    }
-    this.handleQuantityChange = this.handleQuantityChange.bind(this)
-    this.removeCartItem = this.removeCartItem.bind(this)
-  }
-
-
-  handleQuantityChange(event, cartItem) {
-    if (this.props.isLoggedIn) {
-      cartItem.quantity = event.target.value
-      this.props.updateCartItem(cartItem).then(() => {
-        this.setState({
-          cartItems: this.props.cart.OrderItems
-        })
-      })
-    } else {
-      this.setState({loading: true}, () => {
-        let newItems = [...this.state.cartItems]
-        newItems[event.target.name] = addProductToGuestCart(
-          this.state.cartItems[event.target.name],
-          event.target.value
-        )
-        this.setState({cartItems: newItems, loading: false})
-      })
-    }
-  }
-
-  removeCartItem(cartItem) {
-    if (this.props.isLoggedIn) {
-      this.props.deleteCartItem(cartItem).then(() => {
-        this.setState({
-          cartItems: this.props.cart.OrderItems
-        })
-      })
-    } else {
-      this.setState({loading: true}, () => {
-        global.localStorage.removeItem(cartItem.id)
-        let newItems = [...this.state.cartItems]
-        newItems.splice(cartItem.id, 1)
-        this.setState({cartItems: newItems, loading: false})
-      })
     }
   }
 
@@ -84,24 +43,17 @@ export class CartPage extends Component {
   render() {
     let totalPrice = 0
     return (
-      <div id="cartContainer">
+      <div id="confirmationContainer">
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
-            {this.state.cartItems.map(item => {
+            {this.state.cartItems.map((item, idx) => {
               totalPrice += item.price * item.quantity
               let optionTags = []
               for (let i = 1; i < 100; i++) {
                 optionTags.push(i)
               }
               return (
-                <div key={item.id} id="cartItem">
-                  <button
-                    type="button"
-                    id="removeButton"
-                    onClick={() => this.removeCartItem(item)}
-                  >
-                    +
-                  </button>
+                <div key={idx} id="confirmItem">
                   {this.props.isLoggedIn ? (
                     <>
                       <img
@@ -118,28 +70,6 @@ export class CartPage extends Component {
                       <p id="cartItemDescription">{item.description}</p>
                     </>
                   )}
-                  <select
-                    id="chooseQuantityCart"
-                    name={idx.toString()}
-                    onChange={() => this.handleQuantityChange(event, item)}
-                  >
-                    {optionTags.map((tag, idx) => {
-                      if (tag === item.quantity) {
-                        return (
-                          <option key={idx} value={tag} selected>
-                            {tag.toString()}
-                          </option>
-                        )
-                      } else {
-                        return (
-                          <option 
-                          ={idx} value={tag}>
-                            {tag.toString()}
-                          </option>
-                        )
-                      }
-                    })}
-                  </select>
                   <h2 id="singleItemPrice">
                     {'$' +
                       (item.price / 100).toLocaleString() +
@@ -163,11 +93,11 @@ export class CartPage extends Component {
         ) : (
           <div id="emptyCart" />
         )}
-        <h2 id="totalCartPrice">
+        <h2 id="totalConfirmationPrice">
           {'Total: $' + (totalPrice / 100).toLocaleString()}
         </h2>
         <Link id="checkoutLink" to="/confirmation">
-          <button id="checkoutButton">Checkout</button>
+          <button id="checkoutButton">Pay</button>
         </Link>
       </div>
     )
@@ -179,9 +109,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  retrieveCart: () => dispatch(retrieveCart()),
-  updateCartItem: cartItem => dispatch(putCartItem(cartItem)),
-  deleteCartItem: cartItem => dispatch(deleteCartItem(cartItem))
+  retrieveCart: () => dispatch(retrieveCart())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPage)
+export default connect(mapStateToProps, mapDispatchToProps)(Confirmation)

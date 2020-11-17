@@ -11,7 +11,8 @@ import {
   HomePage,
   SingleProduct,
   AllProducts,
-  CartPage
+  CartPage,
+  Confirmation
 } from './components'
 import {me} from './store'
 
@@ -42,6 +43,10 @@ class Routes extends Component {
             exact
             path="/cart"
             component={() => <CartPage isLoggedIn={isLoggedIn} />}
+          />
+          <Route
+            path="/confirmation"
+            component={() => <Confirmation isLoggedIn={isLoggedIn} />}
           />
           {isLoggedIn && (
             <Switch>
