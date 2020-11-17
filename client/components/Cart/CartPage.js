@@ -86,14 +86,14 @@ export class CartPage extends Component {
       <div id="cartContainer">
         {this.state.cartItems && this.state.cartItems.length ? (
           <div id="itemsContainer">
-            {this.state.cartItems.map(item => {
+            {this.state.cartItems.map((item, idx) => {
               totalPrice += item.price * item.quantity
               let optionTags = []
               for (let i = 1; i < 100; i++) {
                 optionTags.push(i)
               }
               return (
-                <div key={item.id} id="cartItem">
+                <div key={idx} id="cartItem">
                   <button
                     type="button"
                     id="removeButton"
