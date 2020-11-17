@@ -43,6 +43,10 @@ export class CartPage extends Component {
             {this.state.cartItems.map((item, idx) => {
               if (this.state.userType === 'guest') {
                 totalPrice += JSON.parse(item).price * JSON.parse(item).quantity
+                let optionTags = []
+                for (let i = 1; i < 100; i++) {
+                  optionTags.push(i)
+                }
                 return (
                   <div key={idx} id="cartItem">
                     <button id="removeButton">+</button>
@@ -59,18 +63,21 @@ export class CartPage extends Component {
                       name="quantity"
                       onChange={() => this.handleQuantityChange(event)}
                     >
-                      <option value={1} selected>
-                        1
-                      </option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                      <option value={9}>9</option>
-                      <option value={10}>10</option>
+                      {optionTags.map((tag, idx) => {
+                        if (tag === JSON.parse(item).quantity) {
+                          return (
+                            <option key={idx} value={tag} selected>
+                              {tag.toString()}
+                            </option>
+                          )
+                        } else {
+                          return (
+                            <option key={idx} value={tag}>
+                              {tag.toString()}
+                            </option>
+                          )
+                        }
+                      })}
                     </select>
                     <h2 id="singleItemPrice">
                       {'$' +
@@ -87,6 +94,11 @@ export class CartPage extends Component {
                           100
                         ).toLocaleString()}
                     </h2>
+                    {/*
+                      (document.getElementById(
+                        'chooseQuantityCart'
+                      ).value = JSON.parse(item).quantity)
+                      */}
                   </div>
                 )
               }
