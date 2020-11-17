@@ -36,7 +36,7 @@ router.delete('/:orderItemId', async (req, res, next) => {
         where: {id: req.params.orderItemId}
       })
       console.log('deleted-------', deleted)
-      res.json(deleted)
+      deleted == 1 && res.json(deleted)
     } else {
       res.send('Unauthorized action -- cannot delete this item')
     }
