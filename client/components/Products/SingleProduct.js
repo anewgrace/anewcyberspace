@@ -47,7 +47,7 @@ class SingleProduct extends Component {
             />
             <h1 id="productName">{this.props.singleProduct.name}</h1>
             <h3 id="productPrice">
-              {'$' + (this.props.singleProduct.price / 100).toFixed(2)}
+              {'$' + (this.props.singleProduct.price / 100).toLocaleString()}
             </h3>
             <p id="productDescription">
               {this.props.singleProduct.description}

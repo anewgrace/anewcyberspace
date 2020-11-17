@@ -17,6 +17,25 @@
   border-radius: 0px 0px 30px 30px;
 }
 
+#backLink {
+  position: absolute;
+  width: 250px;
+  top: 12.5px;
+  left: 25px;
+  cursor: pointer;
+}
+
+#backToProducts {
+  position: absolute;
+  color: white;
+  font-family: Neuropolitical;
+  font-weight: 300;
+  font-size: 1.35rem;
+  width: 250px;
+  border-radius: 0px 0px 30px 30px;
+  cursor: pointer;
+}
+
 #cartCount {
   position: absolute;
   background-color: rgb(255, 255, 255, 0.1);

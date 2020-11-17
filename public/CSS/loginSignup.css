@@ -2,7 +2,7 @@
   position: absolute;
   color: white;
   width: 100%;
-  top: 35%;
+  top: 32.5%;
   z-index: 4;
 }
 
@@ -13,13 +13,6 @@
   z-index: 4;
 }
 
-#googleLink {
-  position: absolute;
-  color: white;
-  top: 30%;
-  z-index: 5;
-}
-
 #emailInput {
   position: absolute;
   background-color: rgb(255, 255, 255, 0.1);
@@ -27,10 +20,11 @@
   font-size: 1.25rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   width: 700px;
   height: 60px;
   line-height: 50px;
+  top: 40px;
   left: 50%;
   margin-left: -365px;
   padding-left: 30px;
@@ -45,7 +39,9 @@
   background-color: rgb(255, 255, 255, 0.1);
   color: white;
   font-size: 1.25rem;
-  font-family: NeuroPolitical;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
   width: 700px;
   height: 60px;
   line-height: 50px;
@@ -68,4 +64,46 @@
   width: 100%;
   top: -150px;
   display: block;
+}
+
+#submitButton {
+  position: absolute;
+  background-color: rgb(57, 163, 192, 0.6);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-family: NeuroPolitical;
+  width: 200px;
+  height: 60px;
+  line-height: 45px;
+  top: 230px;
+  left: 50%;
+  margin-left: -100px;
+  border-radius: 500px;
+  border-width: 0px;
+  border-style: solid;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+#submitButton:hover {
+  background-color: rgb(57, 163, 192, 0.95);
+  color: white;
+}
+
+#googleLink {
+  position: absolute;
+  color: white;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 150px;
+  top: 310px;
+  left: 50%;
+  margin-left: -75px;
+  z-index: 5;
+}
+
+#googleLink:hover {
+  color: rgb(160, 160, 160);
 }

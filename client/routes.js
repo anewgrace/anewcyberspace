@@ -28,14 +28,18 @@ class Routes extends Component {
     return (
       <div>
         <Background />
-        <Navbar />
+        <Route component={Navbar} />
         <Switch>
           {/* Routes placed here are available to all visitors */}
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/products/:singleProductId" component={SingleProduct} />
           <Route exact path="/products" component={AllProducts} />
-          <Route exact path="/cart" component={CartPage} />
+          <Route
+            exact
+            path="/cart"
+            component={() => <CartPage isLoggedIn={isLoggedIn} />}
+          />
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
