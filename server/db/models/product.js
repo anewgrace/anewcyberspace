@@ -19,7 +19,8 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'images/products/default.png',
+    defaultValue:
+      'https://cybergrace.herokuapp.com/Images/products/default.png',
     validate: {
       notEmpty: true
     }

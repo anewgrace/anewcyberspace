@@ -25,6 +25,7 @@ Order.getCart = async function(userId) {
     //includes info for OrderItem and Product
     include: {model: OrderItem, include: Product}
   })
+
   return cart
 }
 

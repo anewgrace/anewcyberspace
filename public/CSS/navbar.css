@@ -85,6 +85,20 @@
   border-radius: 500px;
 }
 
+#logoutButton {
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  width: 70px;
+  height: 50px;
+  line-height: 50px;
+  top: 14px;
+  right: 144px;
+  border-radius: 500px;
+}
+
 #signupButton {
   position: absolute;
   color: white;
@@ -92,6 +106,22 @@
   width: 100px;
   height: 45px;
   line-height: 46px;
+  top: 15.5px;
+  right: 20px;
+  border-radius: 500px;
+  border-color: white;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#dashboardButton {
+  position: absolute;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  width: 100px;
+  height: 45px;
+  line-height: 45px;
   top: 15.5px;
   right: 20px;
   border-radius: 500px;
