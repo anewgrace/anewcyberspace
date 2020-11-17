@@ -61,13 +61,13 @@ export function putCartItem(cartItem) {
     }
   }
 }
-//@param cartItem is an object containing cartItem ID and Quantity
+//param cartItem is an object containing cartItem ID and Quantity
 export function deleteCartItem(cartItem) {
   return async dispatch => {
     try {
       const {data} = await axios.delete(`/api/cart/${cartItem.id}`)
-      console.log('data (returns 1 if deleted successfully)', data[0])
-      data[0] === 1 && dispatch(removeCartItem(cartItem))
+      console.log('data (returns 1 if deleted successfully)', data)
+      data === 1 && dispatch(removeCartItem(cartItem))
     } catch (error) {
       console.log('ERROR IN DELETE CART THUNK:', error)
     }
@@ -92,9 +92,10 @@ export default function orderReducer(state = {}, action) {
     case REMOVE_CART_ITEM:
       return {
         ...state,
-        orderItems: state.orderItems.filter(
-          item => action.orderItem.id !== item.id
-        )
+        OrderItems: state.OrderItems.filter(
+          item => action.cartItem.id !== item.id
+        ),
+        updatedAt: Date.now()
       }
     default:
       return state
