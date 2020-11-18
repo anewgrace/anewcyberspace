@@ -13,6 +13,8 @@ router.get('/', async (req, res, next) => {
         attributes: ['id', 'email', 'firstName', 'lastName'],
         include: {model: Order, include: OrderItem}
       })
+
+      console.log('api users', users)
       res.json(users)
     }
   } catch (err) {
