@@ -12,9 +12,11 @@ export default class HomePage extends Component {
             past the limits of your imagination. Since the year 3000 Cybergrace
             has been the premier technology supplier to more than 200 galaxies.
             Our unprecedented computing technologies chart a path to a better
-            future, for you and for our world. Starting today, your life will be
-            yours again
+            future, for you and for our world.
+            <p>Starting today, your life will be yours again</p>
           </p>
+          <p> </p>
+
           <Link id="browseButton" to="/products">
             Browse
           </Link>
