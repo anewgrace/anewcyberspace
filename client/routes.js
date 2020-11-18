@@ -12,7 +12,8 @@ import {
   SingleProduct,
   AllProducts,
   CartPage,
-  Confirmation
+  Confirmation,
+  AdminDashboard
 } from './components'
 import {me} from './store'
 
@@ -39,6 +40,7 @@ class Routes extends Component {
             component={() => <SingleProduct isLoggedIn={isLoggedIn} />}
           />
           <Route exact path="/products" component={AllProducts} />
+          <Route path="/dashboard" component={AdminDashboard} />
           <Route
             exact
             path="/cart"
@@ -54,6 +56,7 @@ class Routes extends Component {
               <Route path="/home" component={HomePage} />
             </Switch>
           )}
+
           {/* Displays our HomePage component as a fallback */}
           <Route component={HomePage} />
         </Switch>

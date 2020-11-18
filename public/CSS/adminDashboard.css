@@ -1,0 +1,101 @@
+.adminDashboard {
+  z-index: 4;
+}
+
+.adminDashboard h1 {
+  color: white;
+  font-family: NeuroPolitical;
+  text-align: center;
+  margin-top: 0;
+}
+
+.roundTL {
+  border-radius: 25px 0 0 0;
+}
+
+.roundTR {
+  border-radius: 0 25px 0 0;
+}
+
+.roundBR {
+  border-radius: 0 0 25px 0;
+}
+
+.roundBL {
+  border-radius: 0 0 0 25px;
+}
+
+/* Tables
+================================== */
+.adminDashboard .tableContainer {
+  position: absolute;
+  width: 95%;
+  top: 6rem;
+  left: 2.5%;
+  bottom: 2.5%;
+  background-color: rgb(255, 255, 255, 0.15);
+  border-radius: 25px;
+  z-index: 4;
+}
+
+.Rtable {
+  position: absolute;
+  width: 90%;
+  height: 85%;
+  top: 7.5%;
+  left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 4;
+  color: #444;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.Rtable-cell {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  overflow: hidden;
+  list-style: none;
+  border: solid 0.02px rgb(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.adminDashboard .tableContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.Rtable-cell h3 {
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.Rtable-cell h1,
+.Rtable-cell h2,
+.Rtable-cell h3,
+.Rtable-cell h4,
+.Rtable-cell h5,
+.Rtable-cell h6 {
+  margin: 0;
+}
+
+/* Table column sizing
+================================== */
+.Rtable--2cols > .Rtable-cell {
+  width: 50%;
+}
+.Rtable--3cols > .Rtable-cell {
+  width: 33.33%;
+}
+.Rtable--4cols > .Rtable-cell {
+  width: 25%;
+}
+.Rtable--5cols > .Rtable-cell {
+  width: 20%;
+}
+.Rtable--6cols > .Rtable-cell {
+  width: 16.6%;
+}

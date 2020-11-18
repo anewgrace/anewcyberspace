@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order, OrderItem} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -10,7 +10,8 @@ router.get('/', async (req, res, next) => {
       res.send('INTRUDER ALERT! NOT AN ADMIN!').status(404)
     else {
       const users = await User.findAll({
-        attributes: ['id', 'email']
+        attributes: ['id', 'email', 'firstName', 'lastName'],
+        include: {model: Order, include: OrderItem}
       })
       res.json(users)
     }
