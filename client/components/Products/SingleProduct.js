@@ -24,7 +24,8 @@ class SingleProduct extends Component {
 
   addProductToCart = () => {
     if (this.props.isLoggedIn) {
-      this.setState({loading: true}, () => {
+      this.setState({loading: true}, async () => {
+        this.findItem()
         this.props
           .sendSingleItem(
             this.props.singleProduct,
@@ -73,8 +74,6 @@ class SingleProduct extends Component {
     let itemStatus = false
     if (this.state.foundOrderItem && this.state.foundOrderItem.length) {
       itemStatus = this.state.foundOrderItem[0]
-    }
-    if (this.props.isLoggedIn) {
       item = this.state.foundOrderItem[1]
     } else {
       item = JSON.parse(
