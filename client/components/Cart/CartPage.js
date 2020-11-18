@@ -156,14 +156,20 @@ export class CartPage extends Component {
             })}
           </div>
         ) : (
-          <div id="emptyCart" />
+          <h1 id="emptyCart">No Cart Items</h1>
         )}
-        <h2 id="totalCartPrice">
-          {'Total: $' + (totalPrice / 100).toLocaleString()}
-        </h2>
-        <Link id="checkoutLink" to="/confirmation">
-          <button id="checkoutButton">Checkout</button>
-        </Link>
+        {this.state.cartItems && this.state.cartItems.length ? (
+          <div>
+            <h2 id="totalCartPrice">
+              {'Total: $' + (totalPrice / 100).toLocaleString()}
+            </h2>
+            <Link id="checkoutLink" to="/confirmation">
+              <button id="checkoutButton">Checkout</button>
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     )
   }

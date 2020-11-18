@@ -12,7 +12,8 @@ import {
   SingleProduct,
   AllProducts,
   CartPage,
-  Confirmation
+  Confirmation,
+  Success
 } from './components'
 import {me} from './store'
 
@@ -32,8 +33,10 @@ class Routes extends Component {
         <Route component={Navbar} />
         <Switch>
           {/* Routes placed here are available to all visitors */}
+          <Route exact path="/" component={HomePage} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/success" component={Success} />
           <Route
             path="/products/:singleProductId"
             component={() => <SingleProduct isLoggedIn={isLoggedIn} />}

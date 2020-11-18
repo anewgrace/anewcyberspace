@@ -1,7 +1,7 @@
 import {session} from 'passport'
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {retrieveCart} from '../../store/order'
+import {retrieveCart, completeOrder} from '../../store/order'
 import {Link} from 'react-router-dom'
 
 export class Confirmation extends Component {
@@ -10,6 +10,15 @@ export class Confirmation extends Component {
     this.state = {
       loading: false,
       cartItems: []
+    }
+    this.pay = this.pay.bind(this)
+  }
+
+  pay() {
+    if (this.props.isLoggedIn) {
+      this.props.completeOrder(this.props.cart.id)
+    } else {
+      global.localStorage.clear()
     }
   }
 
@@ -93,8 +102,10 @@ export class Confirmation extends Component {
         <h2 id="totalConfirmationPrice">
           {'Total: $' + (totalPrice / 100).toLocaleString()}
         </h2>
-        <Link id="checkoutLink" to="/confirmation">
-          <button id="checkoutButton">Pay</button>
+        <Link id="checkoutLink" to="/success">
+          <button id="checkoutButton" onClick={() => this.pay()}>
+            Pay
+          </button>
         </Link>
       </div>
     )
@@ -106,7 +117,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  retrieveCart: () => dispatch(retrieveCart())
+  retrieveCart: () => dispatch(retrieveCart()),
+  completeOrder: orderId => dispatch(completeOrder(orderId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Confirmation)
