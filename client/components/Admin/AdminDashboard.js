@@ -12,7 +12,7 @@ class AdminDashboard extends Component {
       <div className="adminDashboard">
         <div className="tableContainer">
           <div className="Rtable Rtable--4cols">
-            <div className="Rtable-cell first roundTL">
+            <div className="Rtable-cell first">
               <h3>First Name</h3>
             </div>
             <div className="Rtable-cell last">
@@ -21,22 +21,27 @@ class AdminDashboard extends Component {
             <div className="Rtable-cell username">
               <h3>Username</h3>
             </div>
-            <div className="Rtable-cell orders roundTR">
+            <div className="Rtable-cell orders">
               <h3>Orders Placed</h3>
             </div>
-            {users.length > 0 &&
-              users.map(user => {
-                return (
-                  <>
-                    <div className="Rtable-cell first">{user.firstName}</div>
-                    <div className="Rtable-cell last">{user.lastName}</div>
-                    <div className="Rtable-cell username">{user.email}</div>
-                    <div className="Rtable-cell orders">
-                      {user.orders.length > 1 ? user.orders.length - 1 : 0}
+            {users && users.length ? (
+              <div id="mapElements">
+                {users.map(user => {
+                  return (
+                    <div key={user.id} id="tableRows">
+                      <div className="Rtable-cell first">{user.firstName}</div>
+                      <div className="Rtable-cell last">{user.lastName}</div>
+                      <div className="Rtable-cell username">{user.email}</div>
+                      <div className="Rtable-cell orders">
+                        {user.orders.length > 1 ? user.orders.length - 1 : 0}
+                      </div>
                     </div>
-                  </>
-                )
-              })}
+                  )
+                })}
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       </div>
