@@ -68,7 +68,10 @@ class SingleProduct extends Component {
     }
     let currentQuantity = 1
     let item = {}
-    let itemStatus = this.state.foundOrderItem[0]
+    let itemStatus = false
+    if (this.state.foundOrderItem && this.state.foundOrderItem.length) {
+      itemStatus = this.state.foundOrderItem[0]
+    }
     if (this.props.isLoggedIn) {
       item = this.state.foundOrderItem[1]
     } else {
@@ -84,7 +87,10 @@ class SingleProduct extends Component {
           <h1 id="loading">Loading...</h1>
         ) : (
           <div>
-            <img id="productImage" src={this.props.singleProduct.imageUrl} />
+            <img
+              id="productImage"
+              src={'../' + this.props.singleProduct.imageUrl}
+            />
             <h1 id="productName">{this.props.singleProduct.name}</h1>
             <h3 id="productPrice">
               {'$' + (this.props.singleProduct.price / 100).toLocaleString()}
@@ -116,7 +122,6 @@ class SingleProduct extends Component {
               </select>
 
               {!this.props.isLoggedIn && item ? (
-
                 <button id="addToCart" onClick={() => this.addProductToCart()}>
                   Update Cart
                 </button>
