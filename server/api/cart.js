@@ -16,6 +16,9 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
     console.log('REQ.BODY', req.body)
     const addedItem = await cart.createOrderItem({
@@ -32,8 +35,10 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:orderItemId', async (req, res, next) => {
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
-
     if (cart.userId == req.user.id) {
       const deleted = await OrderItem.destroy({
         where: {id: req.params.orderItemId}
@@ -74,6 +79,9 @@ router.put('/', async (req, res, next) => {
 
 router.put('/:orderItemId', async (req, res, next) => {
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
 
     if (cart.userId == req.user.id) {
