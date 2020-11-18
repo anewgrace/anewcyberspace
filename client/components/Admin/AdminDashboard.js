@@ -7,7 +7,7 @@ class AdminDashboard extends Component {
     this.props.getUsers()
   }
   render() {
-    let users = this.props.allUsers
+    let users = this.props.allUsers || ''
     return (
       <div className="adminDashboard">
         <div className="tableContainer">
