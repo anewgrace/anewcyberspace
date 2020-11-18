@@ -46,14 +46,15 @@ export function findOrderItem(singleProduct) {
       const cart = await axios.get('/api/cart')
       let orderItemsArray = cart.data.OrderItems
       let foundItem = [false, {}]
-      orderItemsArray.map(orderItem => {
-        if (orderItem.productId === singleProduct.id) {
-          console.log('orderItem', orderItem)
-          foundItem[0] = true
-          foundItem[1] = orderItem
-        }
-      })
-      console.log('Found item before return', foundItem)
+      if (orderItemsArray && orderItemsArray.length) {
+        orderItemsArray.map(orderItem => {
+          if (orderItem.productId === singleProduct.id) {
+            console.log('orderItem', orderItem)
+            foundItem[0] = true
+            foundItem[1] = orderItem
+          }
+        })
+      }
       return foundItem
     } catch (error) {
       console.log('ERROR IN FIND ITEM THUNK:', error)

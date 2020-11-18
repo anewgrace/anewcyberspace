@@ -1309,15 +1309,32 @@ function (_Component) {
       if (_this.props.isLoggedIn) {
         _this.setState({
           loading: true
-        }, function () {
-          _this.props.sendSingleItem(_this.props.singleProduct, _this.state.foundOrderItem, _this.state.quantity).then(function () {
-            _this.findItem();
+        },
+        /*#__PURE__*/
+        _asyncToGenerator(
+        /*#__PURE__*/
+        regeneratorRuntime.mark(function _callee() {
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _this.findItem();
 
-            _this.setState({
-              loading: false
-            });
-          });
-        });
+                  _this.props.sendSingleItem(_this.props.singleProduct, _this.state.foundOrderItem, _this.state.quantity).then(function () {
+                    _this.findItem();
+
+                    _this.setState({
+                      loading: false
+                    });
+                  });
+
+                case 2:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee);
+        })));
       } else {
         _this.setState({
           loading: true
@@ -1351,17 +1368,17 @@ function (_Component) {
       /*#__PURE__*/
       _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
+      regeneratorRuntime.mark(function _callee2() {
         var foundOrderItem;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _this2.props.findOrderItem(_this2.props.singleProduct);
 
               case 2:
-                foundOrderItem = _context.sent;
+                foundOrderItem = _context2.sent;
 
                 _this2.setState({
                   foundOrderItem: foundOrderItem,
@@ -1370,10 +1387,10 @@ function (_Component) {
 
               case 4:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       })));
     }
   }, {
@@ -1404,9 +1421,6 @@ function (_Component) {
 
       if (this.state.foundOrderItem && this.state.foundOrderItem.length) {
         itemStatus = this.state.foundOrderItem[0];
-      }
-
-      if (this.props.isLoggedIn) {
         item = this.state.foundOrderItem[1];
       } else {
         item = JSON.parse(global.localStorage.getItem(this.props.singleProduct.id));
@@ -2210,27 +2224,30 @@ function findOrderItem(singleProduct) {
                 cart = _context2.sent;
                 orderItemsArray = cart.data.OrderItems;
                 foundItem = [false, {}];
-                orderItemsArray.map(function (orderItem) {
-                  if (orderItem.productId === singleProduct.id) {
-                    console.log('orderItem', orderItem);
-                    foundItem[0] = true;
-                    foundItem[1] = orderItem;
-                  }
-                });
-                console.log('Found item before return', foundItem);
+
+                if (orderItemsArray && orderItemsArray.length) {
+                  orderItemsArray.map(function (orderItem) {
+                    if (orderItem.productId === singleProduct.id) {
+                      console.log('orderItem', orderItem);
+                      foundItem[0] = true;
+                      foundItem[1] = orderItem;
+                    }
+                  });
+                }
+
                 return _context2.abrupt("return", foundItem);
 
-              case 11:
-                _context2.prev = 11;
+              case 10:
+                _context2.prev = 10;
                 _context2.t0 = _context2["catch"](0);
                 console.log('ERROR IN FIND ITEM THUNK:', _context2.t0);
 
-              case 14:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 11]]);
+        }, _callee2, null, [[0, 10]]);
       }));
 
       return function (_x2) {
@@ -49166,7 +49183,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
