@@ -9,22 +9,6 @@
   margin-top: 0;
 }
 
-.roundTL {
-  border-radius: 25px 0 0 0;
-}
-
-.roundTR {
-  border-radius: 0 25px 0 0;
-}
-
-.roundBR {
-  border-radius: 0 0 25px 0;
-}
-
-.roundBL {
-  border-radius: 0 0 0 25px;
-}
-
 /* Tables
 ================================== */
 .adminDashboard .tableContainer {
@@ -40,21 +24,21 @@
 
 .Rtable {
   position: absolute;
-  width: 90%;
-  height: 85%;
-  top: 7.5%;
-  left: 5%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   z-index: 4;
   color: #444;
   overflow: hidden;
   overflow-y: scroll;
+  border-radius: 25px;
 }
 
 .Rtable-cell {
   box-sizing: border-box;
   display: flex;
+  flex: 1;
   align-items: center;
   width: 100%;
   padding: 0.25rem 0.75rem;
@@ -62,6 +46,16 @@
   list-style: none;
   border: solid 0.02px rgb(255, 255, 255, 0.15);
   background-color: rgba(255, 255, 255, 0.8);
+}
+#mapElements {
+  width: 100%;
+  height: 100%;
+}
+
+#tableRows {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .adminDashboard .Rtable::-webkit-scrollbar {

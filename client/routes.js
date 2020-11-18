@@ -15,7 +15,6 @@ import {
   Confirmation,
   Success,
   AdminDashboard
-
 } from './components'
 import {me} from './store'
 
@@ -29,6 +28,7 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
+    //console.log(this.state.user || 'Loading')
     return (
       <div>
         <Background />
