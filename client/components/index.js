@@ -14,4 +14,6 @@ export {default as SingleProduct} from './Products/SingleProduct'
 export {default as AllProducts} from './Products/AllProducts'
 export {default as CartPage} from './Cart/CartPage'
 export {default as Confirmation} from './Cart/Confirmation'
+export {default as Success} from './Cart/Success'
 export {default as AdminDashboard} from './Admin/AdminDashboard'
+

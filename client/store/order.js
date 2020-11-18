@@ -75,6 +75,13 @@ export function deleteCartItem(cartItem) {
   }
 }
 
+export function completeOrder(orderId) {
+  return async dispatch => {
+    const {data} = await axios.put(`/api/cart`, {orderId})
+    return data[0]
+  }
+}
+
 //-------------REDUCER----------------
 export default function orderReducer(state = {}, action) {
   switch (action.type) {
@@ -100,7 +107,6 @@ export default function orderReducer(state = {}, action) {
       return {
         ...state,
         OrderItems: state.OrderItems.filter(
-
           item => action.cartItem.id !== item.id
         ),
         updatedAt: Date.now()

@@ -89,7 +89,7 @@ class SingleProduct extends Component {
                   }
                 })}
               </select>
-              {item ? (
+              {!this.props.isLoggedIn && item ? (
                 <button id="addToCart" onClick={() => this.addProductToCart()}>
                   Update Cart
                 </button>

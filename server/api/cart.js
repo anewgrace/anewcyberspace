@@ -53,6 +53,30 @@ router.delete('/:orderItemId', async (req, res, next) => {
   }
 })
 
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user.id) {
+      const cart = await Order.getCart(req.user.id)
+
+      if (cart.userId == req.user.id) {
+        const updated = await Order.update(
+          {status: 'completed'},
+          {
+            where: {id: req.body.orderId},
+            returning: true
+          }
+        )
+        console.log('updated-------', updated)
+        res.json(updated)
+      }
+    } else {
+      res.send('Unauthorized action -- cannot update this item')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.put('/:orderItemId', async (req, res, next) => {
   try {
     if (!req.user) {
