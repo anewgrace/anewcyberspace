@@ -17,13 +17,13 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
-    console.log('REQ.BODY', req.body)
+
     const addedItem = await cart.createOrderItem({
       quantity: req.body.quantity,
       productId: req.body.id,
       price: req.body.price
     })
-    console.log('added-------', addedItem)
+
     res.json(addedItem)
   } catch (err) {
     next(err)
@@ -34,9 +34,7 @@ router.delete('/:orderItemId', async (req, res, next) => {
   try {
     const cart = await Order.getCart(req.user.id)
 
-
     if (cart.userId == req.user.id) {
-
       const deleted = await OrderItem.destroy({
         where: {id: req.params.orderItemId}
       })
@@ -51,12 +49,12 @@ router.delete('/:orderItemId', async (req, res, next) => {
 })
 
 router.put('/:orderItemId', async (req, res, next) => {
+  console.log('_____________PUT ROUTE WAS HIT____________')
   try {
     const cart = await Order.getCart(req.user.id)
-
+    console.log('_____________CART____________', cart)
 
     if (cart.userId == req.user.id) {
-
       const updated = await OrderItem.update(
         {quantity: req.body.quantity},
         {

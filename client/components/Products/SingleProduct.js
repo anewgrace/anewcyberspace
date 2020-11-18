@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {addOrderItemToCart, me} from '../../store'
+import {addSingleItemToCart, findOrderItem} from '../../store/order'
 import {
   getSingleProductFromDb,
   addProductToGuestCart
@@ -12,7 +12,8 @@ class SingleProduct extends Component {
     super()
     this.state = {
       loading: false,
-      quantity: 1
+      quantity: 1,
+      foundOrderItem: {}
     }
     this.addProductToCart = this.addProductToCart.bind(this)
   }
@@ -23,7 +24,16 @@ class SingleProduct extends Component {
 
   addProductToCart = () => {
     if (this.props.isLoggedIn) {
-      this.props.sendOrderItem(this.props.singleProduct)
+      this.setState({loading: true}, () => {
+        this.findItem()
+        this.props.sendSingleItem(
+          this.props.singleProduct,
+          this.state.foundOrderItem,
+          this.state.quantity
+        )
+
+        this.setState({loading: false})
+      })
     } else {
       this.setState({loading: true}, () => {
         addProductToGuestCart(this.props.singleProduct, this.state.quantity)
@@ -32,14 +42,23 @@ class SingleProduct extends Component {
     }
   }
 
-  componentDidMount() {
+  findItem() {
     this.setState({loading: true}, () => {
       this.props
         .getSingleProductFromDb(window.location.href.split('/')[4])
-        .then(() => {
-          this.setState({loading: false})
+        .then(async () => {
+          let foundOrderItem = await this.props.findOrderItem(
+            this.props.singleProduct
+          )
+
+          console.log(foundOrderItem)
+          this.setState({foundOrderItem, loading: false})
         })
     })
+  }
+
+  componentDidMount() {
+    this.findItem()
   }
 
   render() {
@@ -48,9 +67,15 @@ class SingleProduct extends Component {
       optionTags.push(i)
     }
     let currentQuantity = 1
-    let item = JSON.parse(
-      global.localStorage.getItem(this.props.singleProduct.id)
-    )
+    let item = {}
+    let itemStatus = this.state.foundOrderItem[0]
+    if (this.props.isLoggedIn) {
+      item = this.state.foundOrderItem[1]
+    } else {
+      item = JSON.parse(
+        global.localStorage.getItem(this.props.singleProduct.id)
+      )
+    }
     if (this.props.singleProduct && item && item.quantity)
       currentQuantity = item.quantity
     return (
@@ -92,14 +117,28 @@ class SingleProduct extends Component {
                   }
                 })}
               </select>
-              {item ? (
+              {item && !this.props.isLoggedIn ? (
                 <button id="addToCart" onClick={() => this.addProductToCart()}>
                   Update Cart
                 </button>
               ) : (
-                <button id="addToCart" onClick={() => this.addProductToCart()}>
-                  Add To Cart
-                </button>
+                <div>
+                  {this.props.isLoggedIn && itemStatus ? (
+                    <button
+                      id="addToCart"
+                      onClick={() => this.addProductToCart()}
+                    >
+                      Update Cart
+                    </button>
+                  ) : (
+                    <button
+                      id="addToCart"
+                      onClick={() => this.addProductToCart()}
+                    >
+                      Add To Cart
+                    </button>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -116,7 +155,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getSingleProductFromDb: singleProductId =>
     dispatch(getSingleProductFromDb(singleProductId)),
-  sendOrderItem: orderItem => dispatch(addOrderItemToCart(orderItem))
+  sendSingleItem: (singleItem, foundItem, quantity) =>
+    dispatch(addSingleItemToCart(singleItem, foundItem, quantity)),
+  findOrderItem: singleItem => dispatch(findOrderItem(singleItem))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
