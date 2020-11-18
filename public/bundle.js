@@ -783,7 +783,7 @@ function (_Component) {
         id: "titleText"
       }, "Tomorrow's Tech, Available Today."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         id: "paragraphText"
-      }, "Push past the boundaries of your being and extend your abilities past the limits of your imagination. Since the year 3000 Cybergrace has been the premier technology supplier to more than 200 galaxies. Our unprecedented computing technologies chart a path to a better future, for you and for our world.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Starting today, your life will be yours again")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Push past the boundaries of your being and extend your abilities past the limits of your imagination. ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Since the year 3000 Cybergrace has been the premier technology supplier to more than 200 galaxies.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Our unprecedented computing technologies chart a path to a better future, for you and for our world.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Starting today, your life will be yours again")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         id: "browseButton",
         to: "/products"
       }, "Browse")));
