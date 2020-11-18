@@ -102,6 +102,13 @@ export function deleteCartItem(cartItem) {
   }
 }
 
+export function mergeCarts(orderItems) {
+  return async dispatch => {
+    const {data} = await axios.post(`/api/cart/merge`, {orderItems})
+    return data
+  }
+}
+
 export function completeOrder(orderId) {
   return async dispatch => {
     const {data} = await axios.put(`/api/cart`, {orderId})

@@ -25,14 +25,16 @@ class SingleProduct extends Component {
   addProductToCart = () => {
     if (this.props.isLoggedIn) {
       this.setState({loading: true}, () => {
-        this.findItem()
-        this.props.sendSingleItem(
-          this.props.singleProduct,
-          this.state.foundOrderItem,
-          this.state.quantity
-        )
-
-        this.setState({loading: false})
+        this.props
+          .sendSingleItem(
+            this.props.singleProduct,
+            this.state.foundOrderItem,
+            this.state.quantity
+          )
+          .then(() => {
+            this.findItem()
+            this.setState({loading: false})
+          })
       })
     } else {
       this.setState({loading: true}, () => {
@@ -43,22 +45,22 @@ class SingleProduct extends Component {
   }
 
   findItem() {
-    this.setState({loading: true}, () => {
-      this.props
-        .getSingleProductFromDb(window.location.href.split('/')[4])
-        .then(async () => {
-          let foundOrderItem = await this.props.findOrderItem(
-            this.props.singleProduct
-          )
-
-          console.log(foundOrderItem)
-          this.setState({foundOrderItem, loading: false})
-        })
+    this.setState({loading: true}, async () => {
+      let foundOrderItem = await this.props.findOrderItem(
+        this.props.singleProduct
+      )
+      this.setState({foundOrderItem, loading: false})
     })
   }
 
   componentDidMount() {
-    this.findItem()
+    this.props
+      .getSingleProductFromDb(window.location.href.split('/')[4])
+      .then(() => {
+        if (this.props.isLoggedIn) {
+          this.findItem()
+        }
+      })
   }
 
   render() {
