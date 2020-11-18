@@ -16,6 +16,9 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
 
     const addedItem = await cart.createOrderItem({
@@ -32,6 +35,9 @@ router.post('/', async (req, res, next) => {
 
 router.delete('/:orderItemId', async (req, res, next) => {
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
 
     if (cart.userId == req.user.id) {
@@ -48,11 +54,38 @@ router.delete('/:orderItemId', async (req, res, next) => {
   }
 })
 
+router.put('/', async (req, res, next) => {
+  try {
+    if (req.user.id) {
+      const cart = await Order.getCart(req.user.id)
+
+      if (cart.userId == req.user.id) {
+        const updated = await Order.update(
+          {status: 'completed'},
+          {
+            where: {id: req.body.orderId},
+            returning: true
+          }
+        )
+        console.log('updated-------', updated)
+        res.json(updated)
+      }
+    } else {
+      res.send('Unauthorized action -- cannot update this item')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.put('/:orderItemId', async (req, res, next) => {
   console.log('_____________PUT ROUTE WAS HIT____________')
   try {
+    if (!req.user) {
+      res.send('NOT SIGNED IN').status(403)
+    }
     const cart = await Order.getCart(req.user.id)
-    console.log('_____________CART____________', cart)
+
 
     if (cart.userId == req.user.id) {
       const updated = await OrderItem.update(

@@ -84,10 +84,7 @@ class SingleProduct extends Component {
           <h1 id="loading">Loading...</h1>
         ) : (
           <div>
-            <img
-              id="productImage"
-              src={`../${this.props.singleProduct.imageUrl}`}
-            />
+            <img id="productImage" src={this.props.singleProduct.imageUrl} />
             <h1 id="productName">{this.props.singleProduct.name}</h1>
             <h3 id="productPrice">
               {'$' + (this.props.singleProduct.price / 100).toLocaleString()}
@@ -117,7 +114,9 @@ class SingleProduct extends Component {
                   }
                 })}
               </select>
-              {item && !this.props.isLoggedIn ? (
+
+              {!this.props.isLoggedIn && item ? (
+
                 <button id="addToCart" onClick={() => this.addProductToCart()}>
                   Update Cart
                 </button>
