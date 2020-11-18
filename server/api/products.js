@@ -60,11 +60,16 @@ router.delete('/:productId', isAdmin, async (req, res, next) => {
 
 //update - price, name, description, inventory, imageURL, etc.
 router.put('/:productId', isAdmin, async (req, res, next) => {
-  const {body} = req
-  const {name, description, price, inventory} = body
   const updated = await Product.update(
-    {where: {id: req.params.productId}},
-    {name, description, price, inventory}
+    {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      inventory: req.body.inventory
+    },
+    {
+      where: {id: req.params.productId}
+    }
   )
   console.log('updated-------', updated)
   updated == 1 && res.json(updated)
