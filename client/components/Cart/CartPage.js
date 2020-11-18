@@ -47,7 +47,10 @@ export class CartPage extends Component {
       this.setState({loading: true}, () => {
         global.localStorage.removeItem(cartItem.id)
         let newItems = [...this.state.cartItems]
-        newItems.splice(cartItem.id, 1)
+        newItems = newItems.filter(item => {
+          if (item.id !== cartItem.id) return item
+        })
+        console.log('NEWITEMS: ', newItems)
         this.setState({cartItems: newItems, loading: false})
       })
     }

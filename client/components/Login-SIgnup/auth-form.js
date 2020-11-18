@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../../store'
+import {mergeCarts} from '../../store/order'
 
 /**
  * COMPONENT
@@ -76,8 +77,15 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
-      //dispatch(mergeCarts([array of guest cart items]))
+      dispatch(auth(email, password, formName)).then(() => {
+        const items = Object.values(window.localStorage)
+        let newItemArray = items.map(item => {
+          return JSON.parse(item)
+        })
+        dispatch(mergeCarts(newItemArray)).then(() => {
+          window.localStorage.clear()
+        })
+      })
     }
   }
 }

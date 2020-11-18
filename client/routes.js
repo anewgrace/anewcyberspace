@@ -29,7 +29,6 @@ class Routes extends Component {
   render() {
     const {isLoggedIn, isAdmin} = this.props
 
-    console.log('is Admin?', isAdmin)
     return (
       <div>
         <Background />

@@ -65,25 +65,27 @@ export class Confirmation extends Component {
                 <div key={idx} id="confirmItem">
                   {this.props.isLoggedIn ? (
                     <>
-                      <img id="cartItemImage" src={item.product.imageUrl} />
-                      <h2 id="cartItemName">{item.product.name}</h2>
-                      <p id="cartItemDescription">{item.product.description}</p>
+                      <img id="confirmItemImage" src={item.product.imageUrl} />
+                      <h2 id="confirmItemName">{item.product.name}</h2>
+                      <p id="confirmItemDescription">
+                        {item.product.description}
+                      </p>
                     </>
                   ) : (
                     <>
-                      <img id="cartItemImage" src={'../' + item.imageUrl} />
-                      <h2 id="cartItemName">{item.name}</h2>
-                      <p id="cartItemDescription">{item.description}</p>
+                      <img id="confirmItemImage" src={'../' + item.imageUrl} />
+                      <h2 id="confirmItemName">{item.name}</h2>
+                      <p id="confirmItemDescription">{item.description}</p>
                     </>
                   )}
-                  <h2 id="singleItemPrice">
+                  <h2 id="confirmSingleItemPrice">
                     {'$' +
                       (item.price / 100).toLocaleString() +
                       ' (' +
                       item.quantity +
                       ')'}
                   </h2>
-                  <h2 id="totalItemPrice">
+                  <h2 id="confirmTotalItemPrice">
                     {'Total: $' +
                       (item.price * item.quantity / 100).toLocaleString()}
                   </h2>

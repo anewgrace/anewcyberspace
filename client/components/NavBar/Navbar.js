@@ -27,26 +27,35 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => {
       )}
       <div id="navButtons">
         {isLoggedIn ? (
-          <div id="userItems">
+          <div>
             {/* The navbar will show these links after you log in */}
-            <Link id="cartButton" to="/cart">
-              <h3 id="cartCount">0</h3>
-              <img id="cartIcon" src="/Images/cart.png" />
-            </Link>
-            <a id="logoutButton" href="#" onClick={handleClick}>
-              Logout
-            </a>
-            {isAdmin && (
-              <Link id="dashboardButton" to="/dashboard">
-                Dashboard
-              </Link>
+            {isAdmin ? (
+              <div id="userItems" style={{right: '0px'}}>
+                <Link id="cartButton" to="/cart">
+                  <img id="cartIcon" src="/Images/cart.png" />
+                </Link>
+                <a id="logoutButton" href="#" onClick={handleClick}>
+                  Logout
+                </a>
+                <Link id="dashboardButton" to="/dashboard">
+                  Dashboard
+                </Link>
+              </div>
+            ) : (
+              <div id="userItems" style={{right: '-100px'}}>
+                <Link id="cartButton" to="/cart">
+                  <img id="cartIcon" src="/Images/cart.png" />
+                </Link>
+                <a id="logoutButton" href="#" onClick={handleClick}>
+                  Logout
+                </a>
+              </div>
             )}
           </div>
         ) : (
           <div id="guestItems">
             {/* The navbar will show these links before you log in */}
             <Link id="cartButton" to="/cart">
-              <h3 id="cartCount">0</h3>
               <img id="cartIcon" src="/Images/cart.png" />
             </Link>
             <Link id="loginButton" to="/login">
