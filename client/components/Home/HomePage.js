@@ -6,14 +6,17 @@ export default class HomePage extends Component {
     return (
       <div id="homeContainer">
         <div id="textBox">
-          <h1 id="titleText">Tomorrow's Tech, Avaiable Today.</h1>
+          <h1 id="titleText">Tomorrow's Tech, Available Today.</h1>
           <p id="paragraphText">
-            This is a paragraph. But wait, this is a paragraph. And in case you
-            forgot, this is a paragraph. Paragraphs are life. Best paragraph
-            ever. This is a paragraph. But wait, this is a paragraph. And in
-            case you forgot, this is a paragraph. Paragraphs are life. Best
-            paragraph ever.
+            Push past the boundaries of your being and extend your abilities
+            past the limits of your imagination. Since the year 3000 Cybergrace
+            has been the premier technology supplier to more than 200 galaxies.
+            Our unprecedented computing technologies chart a path to a better
+            future, for you and for our world.
+            <p>Starting today, your life will be yours again</p>
           </p>
+          <p> </p>
+
           <Link id="browseButton" to="/products">
             Browse
           </Link>
