@@ -39,22 +39,33 @@ router.post('/merge', async (req, res, next) => {
       res.send('NOT SIGNED IN').status(403)
     }
     const cart = await Order.getCart(req.user.id)
-    req.body.orderItems.map(async orderItem => {
-      cart.dataValues.OrderItems.map(async cartItem => {
-        if (orderItem.id === cartItem.productId) {
-          await OrderItem.update(
-            {quantity: orderItem.quantity},
-            {where: {id: cartItem.id}}
-          )
-        } else {
-          await cart.createOrderItem({
-            quantity: orderItem.quantity,
-            productId: orderItem.id,
-            price: orderItem.price
-          })
-        }
+    if (cart.dataValues.OrderItems && cart.dataValues.OrderItems.length) {
+      req.body.orderItems.map(orderItem => {
+        cart.dataValues.OrderItems.map(async cartItem => {
+          if (orderItem.id === cartItem.productId) {
+            await OrderItem.update(
+              {quantity: orderItem.quantity},
+              {where: {id: cartItem.id}}
+            )
+          } else {
+            await cart.createOrderItem({
+              quantity: orderItem.quantity,
+              productId: orderItem.id,
+              price: orderItem.price
+            })
+          }
+        })
       })
-    })
+    } else {
+      req.body.orderItems.map(async orderItem => {
+        await cart.createOrderItem({
+          quantity: orderItem.quantity,
+          productId: orderItem.id,
+          price: orderItem.price
+        })
+      })
+    }
+
     res.send('Success!')
   } catch (err) {
     next(err)
