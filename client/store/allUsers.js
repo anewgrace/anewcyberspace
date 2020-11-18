@@ -4,9 +4,9 @@ import Axios from 'axios'
 const SET_USERS = 'SET_USERS'
 
 //ALL USERS ACTION CREATORS
-export const setUsersState = users => ({
+export const setUsersState = allUsers => ({
   type: SET_USERS,
-  users
+  allUsers
 })
 
 //ALL USERS THUNK CREATOR
@@ -15,8 +15,7 @@ export const getUsersFromDB = () => {
     try {
       const response = await Axios.get('/api/users')
       const users = response.data
-      const action = getUsersFromDB(users)
-      dispatch(action)
+      dispatch(setUsersState(users))
     } catch (error) {
       console.log(error)
     }
@@ -27,9 +26,10 @@ export const getUsersFromDB = () => {
 const allUsersReducer = (state = [], action) => {
   switch (action.type) {
     case SET_USERS:
-      return action.users
+      return action.allUsers
     default:
       return state
   }
 }
+
 export default allUsersReducer
